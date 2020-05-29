@@ -57,3 +57,19 @@ a {
   border-color: var(--dark-green);
   color: var(--light-gray)
 }
+
+@media (max-width: 768px) {
+  .big-header {
+    display: none;
+  }
+
+  .log-in-out-button {
+    float: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .small-header {
+    display: none;
+  }
+}

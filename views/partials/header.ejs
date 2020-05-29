@@ -11,7 +11,7 @@
     </head>
 
     <body>
-    <header>
+    <header class="big-header">
         
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -28,9 +28,41 @@
             </li>
         </ul>
         <% if (user) { %>
-            <button class="btn btn-primary log-in-out-button m-3" href="/logout">Log Out</button>
+            <form action="/logout">
+                <button class="btn btn-primary log-in-out-button m-3">Log Out</button>
+            </form>
         <% } else { %>
-            <button class="btn btn-primary log-in-out-button m-3" href="/auth/google">Login with Google</button>
+            <form action="/auth/google">
+                <button class="btn btn-primary log-in-out-button m-3">Login with Google</button>
+            </form>
         <% } %>
        
+    </header>
+
+    <header class="small-header">
+        
+        <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Your Trips</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">+ Add Trip</a>
+            </li>
+            <% if (user) { %>
+                <form action="/logout">
+                    <button class="btn btn-primary log-in-out-button m-3">Log Out</button>
+                </form>
+            <% } else { %>
+                <form action="/auth/google">
+                    <button class="btn btn-primary log-in-out-button m-3">Login with Google</button>
+                </form>
+            <% } %>
+        </ul>
+        <hr>
     </header>
