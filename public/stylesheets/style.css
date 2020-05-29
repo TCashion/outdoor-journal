@@ -1,22 +1,22 @@
 :root {
   --base: #7EAA61;
-  --lighter-green: #B8F78D;
-  --grey: #AAB9A1;
-  --lighter-grey: #E4F7D7;
-  --darker-green: #597844;
-  --dark-grey: rgb(45,45,45);
+  --light-green: #B8F78D;
+  --gray: #AAB9A1;
+  --light-gray: rgb(241, 248, 236);
+  --dark-green: #597844;
+  --dark-gray: rgb(45,45,45);
 }
 
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: var(--lighter-grey);
-  color: var(--dark-grey);
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
 }
 
 a {
   color: #00B7FF;
-  color: var(--darker-green);
+  color: var(--dark-green);
 }
 
 .login-out-button {
@@ -25,17 +25,17 @@ a {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid var(--darker-green);
+  border-bottom: 1px solid var(--dark-green);
 }
 
 .nav-tabs .nav-link {
-  color: var(--darker-green);
+  color: var(--dark-green);
 }
 
 .nav-tabs .nav-link.active {
   background-color: transparent;
-  border-color: var(--darker-green) var(--darker-green) var(--lighter-grey);
-  color: var(--dark-grey);
+  border-color: var(--dark-green) var(--dark-green) var(--light-gray);
+  color: var(--dark-gray);
 }
 
 .nav-item > a:hover {
