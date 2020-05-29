@@ -6,14 +6,17 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    commentorName: String, // req.user.name
     commentor: {
-        type: [Schema.Types.ObjectId], // JIM 
-        commentor: true
+        type: {
+            type: Schema.Types.ObjectId, // req.user._id for creation 
+            ref: 'User'
+        }, 
+        required: true
     },
-    likes: {
-        type: [Number], 
-        default: 0
-    }
+    likes: [Schema.Types.ObjectId], // length of array is the number of likes
+        // check for user's id in array to determine whether they like or unlike
+        // Array.some() with .equals method will return boolean 
 }, {
     timestamps: true
 });
@@ -25,6 +28,9 @@ const logSchema = new mongoose.Schema({
     },
     date: {
         type: Date, 
+        default: function() {
+            return new Date();
+        },
         required: true
     }
 }, {
@@ -45,18 +51,21 @@ const tripSchema = new mongoose.Schema({
     logs: [logSchema], // JIM
     startDate: {
         type: Date,
-        default: new Date(),
+        default: function() {
+            return new Date();
+        },
         required: true
     },
     endDate: Date,
     classification: {
         type: String,
-        enum: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking'],
+        enum: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'],
+        required: true
     },
     pictures: [String],
     comments: [commentSchema], // JIM
     animals: [String],
-    locations: [Number],
+    location: {lat: Number, long: Number},
     active: {
         type: Boolean,
         required: true, 
