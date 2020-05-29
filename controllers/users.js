@@ -7,7 +7,7 @@ module.exports = {
 function index(req, res) {
     console.log(req.user);
     res.render('users/index', {
-        title: "Users", 
+        title: "Outdoor Journal - Users", 
         user: req.user
     })
 };

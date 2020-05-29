@@ -1,7 +1,19 @@
 <%- include ../partials/header.ejs %>
 
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<% if (user) { %>
+    <div class="container justify-content-center mt-5">
+        <div class="text-center my-5">
+            <img src="<%= user.avatar %>" class="rounded-circle profile-pic h-50 w-50" alt="Google Profile Picture">
+        </div>
+        <h1 class="text-center">Welcome <%= user.name %></h1>
+    </div>
+<% } else { %>
+    <div class="container justify-content-center mt-5">
+        <h1 class="text-center">Outdoor Journal</h1>
+        <p class="text-center">Welcome to Outdoor Journal. Please sign in to continue.</p>
+    </div>
+<% } %>
+
 
 <%- include ../partials/footer.ejs %>
 
