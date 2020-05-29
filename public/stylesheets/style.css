@@ -1,6 +1,15 @@
+:root {
+  --base: #7EAA61;
+  --lighter-green: #B8F78D;
+  --grey: #AAB9A1;
+  --lighter-grey: #E4F7D7;
+  --darker-green: #597844;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: var(--lighter-grey);
 }
 
 a {
