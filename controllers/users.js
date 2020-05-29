@@ -5,5 +5,9 @@ module.exports = {
 };
 
 function index(req, res) {
-    res.send('route to users')
+    console.log(req.user);
+    res.render('users/index', {
+        title: "Users", 
+        user: req.user
+    })
 };
