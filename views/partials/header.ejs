@@ -11,18 +11,26 @@
     </head>
 
     <body>
+    <header>
 
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Your Trips</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">+ Add Trip</a>
-        </li>
-    </ul>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Your Trips</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">+ Add Trip</a>
+            </li>
+            <% if (user) { %>
+                <a class="login-out-button" href="/logout">Log Out</a>
+            <% } else { %>
+                <a class="login-out-button" href="/auth/google">Login with Google</a>
+            <% } %>
+        </ul>
+       
+    </header>

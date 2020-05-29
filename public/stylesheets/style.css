@@ -4,14 +4,40 @@
   --grey: #AAB9A1;
   --lighter-grey: #E4F7D7;
   --darker-green: #597844;
+  --dark-grey: rgb(45,45,45);
 }
 
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: var(--lighter-grey);
+  color: var(--dark-grey);
 }
 
 a {
   color: #00B7FF;
+  color: var(--darker-green);
+}
+
+.login-out-button {
+  margin-left: auto;
+
+}
+
+.nav-tabs {
+  border-bottom: 1px solid var(--darker-green);
+}
+
+.nav-tabs .nav-link {
+  color: var(--darker-green);
+}
+
+.nav-tabs .nav-link.active {
+  background-color: transparent;
+  border-color: var(--darker-green) var(--darker-green) var(--lighter-grey);
+  color: var(--dark-grey);
+}
+
+.nav-item > a:hover {
+  border: none; 
 }
