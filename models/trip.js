@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema({
         required: true
     },
     commentor: {
-        type: [Object], // JIM 
+        type: [Schema.Types.ObjectId], // JIM 
         commentor: true
     },
     likes: {
@@ -42,7 +42,7 @@ const tripSchema = new mongoose.Schema({
         required: true, 
         default: 'My hiking trip...'
     },
-    logs: [logSchema], // JIM
+    // logs: [logSchema], // JIM
     startDate: {
         type: Date,
         default: new Date(),
@@ -54,7 +54,7 @@ const tripSchema = new mongoose.Schema({
         enum: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking'],
     },
     pictures: [String],
-    comments: [commentSchema], // JIM
+    // comments: [commentSchema], // JIM
     animals: [String],
     locations: [Number],
     active: {
@@ -66,4 +66,4 @@ const tripSchema = new mongoose.Schema({
     timestamps: true
 });
 
-modole.exports = mongoose.Schema('Trip', tripSchema);
+module.exports = mongoose.model('Trip', tripSchema);

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const usersCtrl = require('../controllers/users');
+const tripsCtrl = require('../controllers/trips');
 // require isLoggedIn module
 const isLoggedIn = require('./modules/isloggedin');
 
-/* GET user landing page */
-router.get('/users', usersCtrl.index);
+// GET /trips/new
+router.get('/trips/new', isLoggedIn, tripsCtrl.new);
+
 
 
 module.exports = router;
