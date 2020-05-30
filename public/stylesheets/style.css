@@ -5,6 +5,7 @@
   --light-gray: rgb(244, 245, 244);
   --dark-green: #597844;
   --dark-gray: rgb(45,45,45);
+  --danger: rgb(134, 0, 0);
 }
 
 body {
@@ -56,6 +57,17 @@ a {
   background-color: var(--dark-green);
   border-color: var(--dark-green);
   color: var(--light-gray)
+}
+
+.index-container, .show-container {
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  border-color: var(--danger);
 }
 
 @media (max-width: 768px) {

@@ -1,13 +1,12 @@
 <%- include ../partials/header.ejs %>
 
-<div class="container py-5 my-5">
+<div class="fluid-container index-container py-5 my-5">
     <% trips.forEach(function(trip) { %>
         <div class="card m-3" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title"><%= trip.title %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= trip.description %></h6>
                 <p class="card-text">
-                    <% let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; %>
                     <% if (trip.startDate) { %>
                         <%= trip.startDate.toLocaleString([], options) %> 
                     <% } %>
@@ -29,8 +28,7 @@
                         </span> 
                     <% } %>
                 </p>
-                <a href="#" class="card-link">See trip</a>
-                <a href="#" class="card-link">Delete</a>
+                <a href="/trips/<%= trip._id %>" class="btn btn-primary">See trip</a>
             </div>
         </div>
     <% }); %>

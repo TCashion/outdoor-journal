@@ -8,6 +8,8 @@ const isLoggedIn = require('./modules/isloggedin');
 router.get('/trips', isLoggedIn, tripsCtrl.index);
 // GET /trips/new
 router.get('/trips/new', isLoggedIn, tripsCtrl.new);
+// GET /trips/:id
+router.get('/trips/:id', isLoggedIn, tripsCtrl.show);
 // POST /trips
 router.post('/trips', isLoggedIn, tripsCtrl.create);
 

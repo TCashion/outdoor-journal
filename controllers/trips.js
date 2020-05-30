@@ -1,10 +1,12 @@
 const User = require('../models/user');
 const Trip = require('../models/trip');
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 module.exports = {
     index,
     new: newTrip,
-    create
+    create, 
+    show
 }
 
 function index(req, res) {
@@ -12,7 +14,8 @@ function index(req, res) {
         res.render('trips/index', {
             title: 'Your Trips', 
             user: req.user, 
-            trips
+            trips,
+            options
         });
     });
 };
@@ -22,8 +25,8 @@ function newTrip(req, res) {
         title: 'New Trip', 
         user: req.user,
         classifications: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other']
-    })
-}
+    });
+};
 
 function create(req, res) {
     const trip = new Trip(req.body);
@@ -33,8 +36,19 @@ function create(req, res) {
     trip.save(function(err) {
         if (err) res.send('invalid data');
         res.redirect('/trips');
-    })
-}
+    });
+};
+
+function show(req, res) {
+    Trip.findById((req.params.id), function(err, trip) {
+        res.render('trips/show', {
+            trip, 
+            user: req.user,
+            title: `${trip.title}`,
+            options
+        });
+    });  
+};
 
 function parseCoordinates(location) {
     const coordinates = location.split(',').map(coord => parseFloat(coord));

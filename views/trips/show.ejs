@@ -1,0 +1,48 @@
+<%- include ../partials/header.ejs %>
+
+<div class="fluid-container show-container my-5 py-5">
+    <div class="col-sm-6">
+        <div class="card w-100 my-3">
+            <div class="card-body">
+                <h5 class="card-title"><%= trip.title %></h5>
+                <p class="card-text"><%= trip.description %></p>
+                <p class="card-text">
+                        <%= trip.startDate.toLocaleString([], options) %> 
+                        - 
+                        <% if (trip.endDate) { %>
+                            <%= trip.endDate.toLocaleString([], options); %>
+                        <% } else { %>
+                            Present
+                        <% }; %>
+                </p>
+                <a href="#" class="btn btn-danger float-right">DELETE</a>
+            </div>
+        </div>
+        <div class="card w-100 my-3">
+            <div class="card-header">
+            Animals
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-6">    
+        <div class="card w-100 my-3">
+            <div class="card-header">
+            Date
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="mb-0">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam magni, obcaecati, natus quis quaerat aspernatur ipsa iusto, dolores qui reprehenderit debitis repellat veritatis! Sit aliquam esse animi, reiciendis beatae nulla!
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%- include ../partials/footer.ejs %>
