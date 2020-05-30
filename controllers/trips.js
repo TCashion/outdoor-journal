@@ -8,10 +8,13 @@ module.exports = {
 }
 
 function index(req, res) {
-    res.render('trips/index', {
-        title: 'Your Trips', 
-        user: req.user
-    })
+    Trip.find({loggerId : req.user._id}, function(err, trips) {
+        res.render('trips/index', {
+            title: 'Your Trips', 
+            user: req.user, 
+            trips
+        });
+    });
 };
 
 function newTrip(req, res) {
@@ -27,7 +30,6 @@ function create(req, res) {
     if (!trip.startDate) trip.startDate = new Date();
     trip.loggerId = req.user._id
     trip.location = parseCoordinates(req.body.location);
-    console.log(trip)
     trip.save(function(err) {
         if (err) res.send('invalid data');
         res.redirect('/trips');

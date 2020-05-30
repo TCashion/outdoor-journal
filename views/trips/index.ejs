@@ -1,5 +1,39 @@
 <%- include ../partials/header.ejs %>
 
-Index.ejs
+<div class="container py-5 my-5">
+    <% trips.forEach(function(trip) { %>
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title"><%= trip.title %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= trip.description %></h6>
+                <p class="card-text">
+                    <% let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; %>
+                    <% if (trip.startDate) { %>
+                        <%= trip.startDate.toLocaleString([], options) %> 
+                    <% } %>
+                        - 
+                    <% if (trip.endDate) { %>
+                        <%= trip.endDate.toLocaleString([], options) %>
+                    <% } else { %>
+                         Present
+                    <% } %>
+                </p>
+                <p>
+                    <% if (trip.active) { %>
+                        <span style="color:green">
+                            Active
+                        </span> 
+                    <% } else { %>
+                        <span style="color:red">
+                            Close
+                        </span> 
+                    <% } %>
+                </p>
+                <a href="#" class="card-link">See trip</a>
+                <a href="#" class="card-link">Delete</a>
+            </div>
+        </div>
+    <% }); %>
+</div>
 
 <%- include ../partials/footer.ejs %>
