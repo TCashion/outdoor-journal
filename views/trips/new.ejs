@@ -71,7 +71,8 @@
             locationInput.setAttribute('value', `${currentLocation[0]}, ${currentLocation[1]}`);
         } else {
             locationDivEl.setAttribute('style', 'display: block');
-            locationInput.setAttribute('value', 'lat, lon');
+            locationInput.setAttribute('value', '');
+            locationInput.setAttribute('placeholder', 'lat, long');
         };
     });
 
