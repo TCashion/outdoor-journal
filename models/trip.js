@@ -38,14 +38,17 @@ const logSchema = new mongoose.Schema({
 });
 
 const tripSchema = new mongoose.Schema({
+    loggerId: {
+        type: Schema.Types.ObjectId,
+    },
     title: {
         type: String,
-        required: true, 
+        // required: true, 
         default: 'Hiking'
     },
     description: {
         type: String,
-        required: true, 
+        // required: true, 
         default: 'My hiking trip...'
     },
     logs: [logSchema], // JIM
@@ -54,7 +57,6 @@ const tripSchema = new mongoose.Schema({
         default: function() {
             return new Date();
         },
-        required: true
     },
     endDate: Date,
     classification: {

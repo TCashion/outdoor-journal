@@ -23,9 +23,15 @@ function newTrip(req, res) {
 }
 
 function create(req, res) {
-    req.body.location = parseCoordinates(req.body.location);
     const trip = new Trip(req.body);
-    res.redirect('/trips');
+    if (!trip.startDate) trip.startDate = new Date();
+    trip.loggerId = req.user._id
+    trip.location = parseCoordinates(req.body.location);
+    console.log(trip)
+    trip.save(function(err) {
+        if (err) res.send('invalid data');
+        res.redirect('/trips');
+    })
 }
 
 function parseCoordinates(location) {
