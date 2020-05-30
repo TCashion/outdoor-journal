@@ -2,7 +2,7 @@
 
 <div class="container my-5">
     <h2 class="my-5">Add a New Trip</h1>
-    <form method="POST" action="/trips">
+    <form id="add-location-form" method="POST" action="/trips">
         <div class="form-group">
           <label for="trip-title">Trip title:</label>
           <input type="email" class="form-control" id="trip-title" name="title" placeholder="Hiking">
@@ -25,8 +25,55 @@
             <option>5</option>
           </select>
         </div>
+        <div class="form-group">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="location-radio" id="current-radio" checked>
+                <label class="form-check-label" for="current-radio">Current location</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="location-radio" id="custom-radio">
+                <label class="form-check-label" for="custom-radio">Custom location</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="location-radio" id="skip-radio">
+                <label class="form-check-label" for="skip-radio">Skip</label>
+            </div>
+        </div>
+        <div class="form-group" id="location-input" style="display: none">
+            <label for="trip-location">Enter location coordinates (lattitude and longitude coordinates):</label>
+            <input type="text" class="form-control" id="trip-location" name="location">
+        </div>
         <button type="submit" class="btn btn-primary">Create Trip</button>
       </form>
 </div>
 
+
+<script>
+    const locationForm = document.getElementById('add-location-form');
+    const currentRadio = document.getElementById('current-radio');
+    const customRadio = document.getElementById('custom-radio');
+    const skipRadio = document.getElementById('skip-radio');
+    const locationDivEl = document.getElementById('location-input');
+    const locationInput = document.getElementById('trip-location');
+    let currentLat;
+    let currentLong;
+    let currentLocation = []; 
+    navigator.geolocation.getCurrentPosition(function(location) {
+        currentLat = location.coords.latitude;
+        currentLong = location.coords.longitude;
+        currentLocation.push(currentLat, currentLong);
+        locationInput.setAttribute('value', `${currentLat}, ${currentLong}`);
+    });
+
+    locationForm.addEventListener('click', function(e) {
+        if (currentRadio.checked || skipRadio.checked) {
+            locationDivEl.setAttribute('style', 'display: none');
+            locationInput.setAttribute('value', `${currentLocation[0]}, ${currentLocation[1]}`);
+        } else {
+            locationDivEl.setAttribute('style', 'display: block');
+            locationInput.setAttribute('value', 'lat, lon');
+        };
+    });
+
+</script>
 <%- include ../partials/footer.ejs %>

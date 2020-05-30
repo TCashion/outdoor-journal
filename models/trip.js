@@ -10,9 +10,9 @@ const commentSchema = new mongoose.Schema({
     commentor: {
         type: {
             type: Schema.Types.ObjectId, // req.user._id for creation 
-            ref: 'User'
+            ref: 'User',
+            required: true
         }, 
-        required: true
     },
     likes: [Schema.Types.ObjectId], // length of array is the number of likes
         // check for user's id in array to determine whether they like or unlike
