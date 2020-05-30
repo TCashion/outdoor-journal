@@ -23,7 +23,15 @@ function newTrip(req, res) {
 }
 
 function create(req, res) {
-    console.log(req.body)
+    req.body.location = parseCoordinates(req.body.location);
+    const trip = new Trip(req.body);
     res.redirect('/trips');
 }
 
+function parseCoordinates(location) {
+    const coordinates = location.split(',').map(coord => parseFloat(coord));
+    return {
+        lat: coordinates[0],
+        long: coordinates[1]
+    };
+};
