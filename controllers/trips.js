@@ -17,7 +17,8 @@ function index(req, res) {
 function newTrip(req, res) {
     res.render('trips/new', {
         title: 'New Trip', 
-        user: req.user
+        user: req.user,
+        classifications: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other']
     })
 }
 

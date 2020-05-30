@@ -59,7 +59,6 @@ const tripSchema = new mongoose.Schema({
     endDate: Date,
     classification: {
         type: String,
-        enum: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'],
         required: true
     },
     pictures: [String],

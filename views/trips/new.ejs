@@ -18,11 +18,9 @@
         <div class="form-group">
           <label for="classification">Example select</label>
           <select class="form-control" id="classification" name="classification">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <% classifications.forEach(function (classification) { %>
+                <option><%= classification %></option>
+            <% }); %>
           </select>
         </div>
         <div class="form-group">
