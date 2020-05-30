@@ -15,16 +15,32 @@
         
         <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="/">Home</a>
+              <a class="nav-link 
+              <% if (page === 'userIndex') { %>
+                active
+              <% } %>
+              " href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/trips">Your Trips</a>
+              <a class="nav-link 
+              <% if (page === 'tripIndex') { %>
+                active
+              <% } %>
+              " href="/trips">Your Trips</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
+              <a class="nav-link 
+              <% if (page === 'userProfile') { %>
+                active
+              <% } %>
+              " href="#">Profile</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/trips/new">+ Add Trip</a>
+              <a class="nav-link 
+              <% if (page === 'newTrip') { %>
+                active
+              <% } %>
+              " href="/trips/new">+ Add Trip</a>
             </li>
         </ul>
         <% if (user) { %>

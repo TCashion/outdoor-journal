@@ -13,6 +13,7 @@ function index(req, res) {
     Trip.find({loggerId : req.user._id}, function(err, trips) {
         res.render('trips/index', {
             title: 'Your Trips', 
+            page: 'tripIndex',
             user: req.user, 
             trips,
             options
@@ -23,6 +24,7 @@ function index(req, res) {
 function newTrip(req, res) {
     res.render('trips/new', {
         title: 'New Trip', 
+        page: 'newTrip',
         user: req.user,
         classifications: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other']
     });
@@ -45,6 +47,7 @@ function show(req, res) {
             trip, 
             user: req.user,
             title: `${trip.title}`,
+            page: '',
             options
         });
     });  
