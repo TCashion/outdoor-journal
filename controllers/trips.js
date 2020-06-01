@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Trip = require('../models/trip');
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'].sort(); 
 
 module.exports = {
     index,
@@ -26,7 +27,7 @@ function newTrip(req, res) {
         title: 'New Trip', 
         page: 'newTrip',
         user: req.user,
-        classifications: ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other']
+        classifications
     });
 };
 
@@ -37,7 +38,7 @@ function create(req, res) {
     trip.location = parseCoordinates(req.body.location);
     trip.save(function(err) {
         if (err) res.send('invalid data');
-        res.redirect('/trips');
+        res.redirect(`/trips/${trip.id}`);
     });
 };
 
