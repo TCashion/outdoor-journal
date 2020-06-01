@@ -9,7 +9,8 @@ module.exports = {
     new: newTrip,
     create, 
     show, 
-    delete: deleteOne
+    delete: deleteOne, 
+    update
 };
 
 function index(req, res) {
@@ -69,5 +70,10 @@ function deleteOne(req, res) {
     Trip.findById(req.params.id, function(err, trip) {
         trip.remove();
         res.redirect('/trips');
-    })
+    });
+};
+
+function update(req, res) {
+    console.log(req.body)
+    res.send(`update trip ${req.params.id}`)
 }

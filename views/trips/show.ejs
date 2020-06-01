@@ -14,6 +14,17 @@
                                 <%= trip.endDate.toLocaleString([], timeOptionsOne); %>
                             <% } else { %>
                                 Present
+                                <% if (trip.loggerId.equals(user._id)) { %> 
+                                    <br>
+                                    <a id="add-end-date" href="">Set end date</a>
+                                    <div class="form-group hidden" id="add-end-date-form">
+                                        <form action="/trips/<%= trip._id %>?_method=PUT" method="POST">
+                                            <label for="trip-end-date">Enter end date</label>
+                                            <input type="datetime-local" class="form-control" id="trip-end-date" name="endDate" required>
+                                            <button class="btn btn-primary my-3">Submit</button>
+                                        </form>
+                                    </div>
+                                <% } %>
                             <% }; %>
                     </p>
                     <% if (trip.loggerId.equals(user._id)) { %>
@@ -127,5 +138,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    const mainContainer = document.querySelectorAll('.fluid-container')[0];
+    const addEndDateLink = document.getElementById('add-end-date');
+    const addEndDateForm = document.getElementById('add-end-date-form');
+
+
+    mainContainer.addEventListener('click', function(e) {
+        if (e.target === addEndDateLink) {
+            e.preventDefault();
+            addEndDateLink.setAttribute('style', 'display:none');
+            addEndDateForm.setAttribute('style', 'display:block')
+        }
+    });
+</script>
 
 <%- include ../partials/footer.ejs %>

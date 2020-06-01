@@ -79,6 +79,10 @@ a {
   width: 100px;
 }
 
+.hidden {
+  display:none;
+}
+
 @media (max-width: 768px) {
   .big-header {
     display: none;

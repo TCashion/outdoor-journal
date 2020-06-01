@@ -14,5 +14,7 @@ router.get('/trips/:id', authorizations.isLoggedIn, tripsCtrl.show);
 router.post('/trips', authorizations.isLoggedIn, tripsCtrl.create);
 // DELETE /trips/:id
 router.delete('/trips/:id', authorizations.isLoggedIn, authorizations.isAuthorizedUser, tripsCtrl.delete);
+// PUT /trips/:id
+router.put('/trips/:id', authorizations.isLoggedIn, authorizations.isAuthorizedUser, tripsCtrl.update);
 
 module.exports = router;
