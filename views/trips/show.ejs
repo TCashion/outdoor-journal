@@ -67,33 +67,32 @@
                         No logs entered yet. Use the form above to enter your first log. 
                     </p>
             <% }; %>
-            <hr>
         </div>
     </div>
-    <div class="row w-100 px-3">
-        <% if (trip.comments.length) { %>
-            <div class="card my-3 w-100">
-                <div class="card-header">
-                    Comments
+    <div class="row w-100">
+        <div class="col-12">
+            <hr class="mt-0">
+            <% if (trip.comments.length) { %>
+                <div class="card my-3 w-100">
+                    <div class="card-header">
+                        Comments
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <p class="mb-0">
+                                Be the first to comment
+                            </p>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <p class="mb-0">
-                            Be the first to comment
-                        </p>
-                    </li>
-                </ul>
-            </div>
-        <% } else { %> 
-            <form class="w-100" action="" method="POST">
-                <label for="new-comment-form">Be the first to comment:</label>
-                <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
-                <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
-            </form>
-        <% } %>
-
-        
-
+            <% } else { %> 
+                <form class="w-100 my-3" action="" method="POST">
+                    <label for="new-comment-form">Be the first to comment:</label>
+                    <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
+                    <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
+                </form>
+            <% } %>
+        </div>
     </div>
 </div>
 
