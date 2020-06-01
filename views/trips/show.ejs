@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                     <div class="log-supplementals">
-                        <form action="">
+                        <form action="/trips/<%= trip._id %>/logs/<%= log._id %>/likes" method="POST">
                             <button class="btn btn-primary btn-likes m-3">Likes: <%= log.likes.length %></button>
                         </form>
                         <a href="#" class="card-link">Add Comment</a>
