@@ -1,6 +1,6 @@
 <%- include ../partials/header.ejs %>
 
-<div class="fluid-container show-container my-5 py-5">
+<div class="fluid-container show-container my-sm-5 py-sm-5 justify-content-center">
     <div class="row w-100">
         <div class="col-sm-6">
             <div class="card w-100 my-3">
@@ -34,7 +34,6 @@
                     <li class="list-group-item">Vestibulum at eros</li>
                 </ul>
             </div>
-            <hr>
         </div>
         <div class="col-sm-6">   
             <% if (trip.loggerId.equals(user._id)) { %>
@@ -61,13 +60,13 @@
                                 </p>
                             </li>
                         </ul>
-                        <div class="log-supplementals">
+                        <div class="col-12 px-sm-0 d-flex">
                             <form action="/trips/<%= trip._id %>/logs/<%= log._id %>/likes?_method=PUT" method="POST">
-                                <button class="btn btn-primary btn-likes m-3">Likes: <%= log.likes.length %></button>
+                                <button class="btn btn-primary btn-likes m-1 m-sm-3">Likes: <%= log.likes.length %></button>
                             </form>
                             <% if (trip.loggerId.equals(user._id)) { %>
                                 <form action="/logs/<%= log._id %>?_method=DELETE" method="POST">
-                                    <button type="submit" class="btn btn-danger m-3">DELETE</button>
+                                    <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</button>
                                 </form>
                             <% } %>
                         </div>
@@ -84,6 +83,12 @@
         <div class="col-12">
             <hr class="mt-0">
             <% if (trip.comments.length) { %>
+                <form class="w-100 my-3" action="/trips/<%= trip._id %>/comments" method="POST">
+                    <label for="new-comment-form">Add comment:</label>
+                    <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
+                    <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
+                </form>
+                <hr class="mt-0">
                 <% trip.comments.forEach(function(comment) { %>
                     <div class="card my-3 w-100">
                         <div class="card-header">
@@ -100,23 +105,18 @@
                                 </p>
                             </li>
                         </ul>
-                        <div class="col-12 px-0 d-flex">
+                        <div class="col-12 px-sm-0 d-flex">
                             <form action="/trips/<%= trip._id %>/comments/<%= comment._id %>/likes?_method=PUT" method="POST">
-                                <button class="btn btn-primary btn-likes m-3">Likes: <%= comment.likes.length %></button>
+                                <button class="btn btn-primary btn-likes m-1 m-sm-3">Likes: <%= comment.likes.length %></button>
                             </form>
                             <% if (comment.commentorId.equals(user._id)) { %>
                                 <form action="/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                    <button type="submit" class="btn btn-danger m-3">DELETE</button>
+                                    <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</button>
                                 </form>
                             <% } %>
                         </div>
                     </div>
                 <% }) %>
-                <form class="w-100 my-3" action="/trips/<%= trip._id %>/comments" method="POST">
-                    <label for="new-comment-form">Add comment:</label>
-                    <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
-                    <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
-                </form>
             <% } else { %> 
                 <form class="w-100 my-3" action="/trips/<%= trip._id %>/comments" method="POST">
                     <label for="first-comment-form">Be the first to comment:</label>

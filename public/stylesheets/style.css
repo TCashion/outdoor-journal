@@ -79,11 +79,6 @@ a {
   width: 100px;
 }
 
-.log-supplementals {
-  display: flex;
-  align-items: center;
-}
-
 @media (max-width: 768px) {
   .big-header {
     display: none;
