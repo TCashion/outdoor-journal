@@ -8,7 +8,8 @@ module.exports = {
     index,
     new: newTrip,
     create, 
-    show
+    show, 
+    delete: deleteOne
 };
 
 function index(req, res) {
@@ -63,3 +64,10 @@ function parseCoordinates(location) {
         long: coordinates[1]
     };
 };
+
+function deleteOne(req, res) {
+    Trip.findById(req.params.id, function(err, trip) {
+        trip.remove();
+        res.redirect('/trips');
+    })
+}
