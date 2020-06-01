@@ -33,7 +33,7 @@ const logSchema = new mongoose.Schema({
         },
         required: true
     },
-    comments: [commentSchema],
+    // comments: [commentSchema], // moved this back to trip schema 
     likes: [Schema.Types.ObjectId]
 }, {
     timestamps: true
@@ -65,6 +65,7 @@ const tripSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    comments: [commentSchema],
     pictures: [String],
     animals: [String],
     location: {lat: Number, long: Number},

@@ -1,76 +1,99 @@
 <%- include ../partials/header.ejs %>
 
 <div class="fluid-container show-container my-5 py-5">
-    <div class="col-sm-6">
-        <div class="card w-100 my-3">
-            <div class="card-body">
-                <h5 class="card-title"><%= trip.title %></h5>
-                <p class="card-text"><%= trip.description %></p>
-                <p class="card-text">
-                        <%= trip.startDate.toLocaleString([], timeOptionsOne) %> 
-                        - 
-                        <% if (trip.endDate) { %>
-                            <%= trip.endDate.toLocaleString([], timeOptionsOne); %>
-                        <% } else { %>
-                            Present
-                        <% }; %>
-                </p>
-                <a href="#" class="btn btn-danger float-right">DELETE</a>
+    <div class="row w-100">
+        <div class="col-sm-6">
+            <div class="card w-100 my-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= trip.title %></h5>
+                    <p class="card-text"><%= trip.description %></p>
+                    <p class="card-text">
+                            <%= trip.startDate.toLocaleString([], timeOptionsOne) %> 
+                            - 
+                            <% if (trip.endDate) { %>
+                                <%= trip.endDate.toLocaleString([], timeOptionsOne); %>
+                            <% } else { %>
+                                Present
+                            <% }; %>
+                    </p>
+                    <a href="#" class="btn btn-danger float-right">DELETE</a>
+                </div>
             </div>
+            <hr>
+            <div class="card w-100 my-3">
+                <div class="card-header">
+                Animals
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+            <hr>
         </div>
-        <div class="card w-100 my-3">
-            <div class="card-header">
-            Animals
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
+        <div class="col-sm-6">   
+            <hr>
+            <form method="POST" action="/trips/<%= trip._id %>/logs">
+                <div class="form-group">
+                    <label for="new-log-form">New log:</label>
+                    <textarea class="form-control" id="new-log-form" rows="3" name="body"></textarea>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </div>
+            </form> 
+            <hr>
+            <% if (trip.logs.length) { %>
+                <% trip.logs.forEach(function(log) { %>
+                    <div class="card w-100 my-3">
+                        <div class="card-header">
+                            <%= log.date.toLocaleString([], timeOptionsTwo) %>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <p class="mb-0">
+                                    <%= log.body %>
+                                </p>
+                            </li>
+                        </ul>
+                        <div class="log-supplementals">
+                            <form action="/trips/<%= trip._id %>/logs/<%= log._id %>/likes" method="POST">
+                                <button class="btn btn-primary btn-likes m-3">Likes: <%= log.likes.length %></button>
+                            </form>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                    <p class="mb-0">
+                        No logs entered yet. Use the form above to enter your first log. 
+                    </p>
+            <% }; %>
+            <hr>
         </div>
     </div>
-    <div class="col-sm-6">   
-        <hr>
-        <form method="POST" action="/trips/<%= trip._id %>/logs">
-            <div class="form-group">
-                <label for="new-log-form">New log:</label>
-                <textarea class="form-control" id="new-log-form" rows="3" name="body"></textarea>
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </div>
-        </form> 
-        <hr>
-        <% if (trip.logs.length) { %>
-            <% trip.logs.forEach(function(log) { %>
-                <div class="card w-100 my-3">
-                    <div class="card-header">
-                        <%= log.date.toLocaleString([], timeOptionsTwo) %>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <p class="mb-0">
-                                <%= log.body %>
-                            </p>
-                        </li>
-                    </ul>
-                    <div class="log-supplementals">
-                        <form action="/trips/<%= trip._id %>/logs/<%= log._id %>/likes" method="POST">
-                            <button class="btn btn-primary btn-likes m-3">Likes: <%= log.likes.length %></button>
-                        </form>
-                        <a href="#" class="card-link">Add Comment</a>
-                    </div>
+    <div class="row w-100 px-3">
+        <% if (trip.comments.length) { %>
+            <div class="card my-3 w-100">
+                <div class="card-header">
+                    Comments
                 </div>
-            <% }); %>
-
-
-
-        <% } else { %>
-            <div class="card w-100 my-3">
-                <p class="mb-0">
-                    No logs entered yet. Use the form above to enter your first log. 
-                </p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p class="mb-0">
+                            Be the first to comment
+                        </p>
+                    </li>
+                </ul>
             </div>
-        <% }; %>
+        <% } else { %> 
+            <form class="w-100" action="" method="POST">
+                <label for="new-comment-form">Be the first to comment:</label>
+                <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
+                <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
+            </form>
+        <% } %>
+
         
+
     </div>
 </div>
 
