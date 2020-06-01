@@ -13,6 +13,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tripsRouter = require('./routes/trips');
 var logsRouter = require('./routes/logs');
+var commentsRouter = require('./routes/comments');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', logsRouter);
+app.use('/', commentsRouter);
 app.use('/', tripsRouter);
 
 // catch 404 and forward to error handler
