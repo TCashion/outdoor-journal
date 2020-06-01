@@ -32,7 +32,9 @@ const logSchema = new mongoose.Schema({
             return new Date();
         },
         required: true
-    }
+    },
+    comments: [commentSchema], // JIM
+    likes: [Schema.Types.ObjectId]
 }, {
     timestamps: true
 });
@@ -64,7 +66,6 @@ const tripSchema = new mongoose.Schema({
         required: true
     },
     pictures: [String],
-    comments: [commentSchema], // JIM
     animals: [String],
     location: {lat: Number, long: Number},
     active: {
