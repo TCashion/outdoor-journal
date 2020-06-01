@@ -2,7 +2,8 @@ const User = require('../models/user');
 const Trip = require('../models/trip');
 
 module.exports = {
-    create
+    create, 
+    updateLikes
 };
 
 function create(req, res) {
@@ -16,3 +17,20 @@ function create(req, res) {
         })
     });
 };
+
+function updateLikes(req, res) {
+    Trip.findById(req.params.tripId, function(err, trip) {
+        trip.comments.forEach(function(comment) {
+            if (comment.id === req.params.commentId) {
+                let idx = comment.likes.indexOf(req.user._id);
+                if (idx === -1) {
+                    comment.likes.push(req.user._id)
+                } else {
+                    comment.likes.splice(idx, 1);
+                };
+            };
+        });
+        trip.save(); 
+        res.redirect(`/trips/${req.params.tripId}`);
+    });
+}

@@ -20,7 +20,6 @@ function updateLikes(req, res) {
         trip.logs.forEach(function(log) {
             if (log.id === req.params.logId) {
                 let idx = log.likes.indexOf(req.user._id);
-                console.log('idx', idx)
                 if (idx === -1) {
                     log.likes.push(req.user._id)
                 } else {

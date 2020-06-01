@@ -37,7 +37,7 @@
         <div class="col-sm-6">   
             <% if (trip.loggerId.equals(user._id)) { %>
                 <hr>
-                <form method="POST" action="/trips/<%= trip._id %>/logs">
+                <form method="POST" action="/trips/<%= trip._id %>/comments">
                     <div class="form-group">
                         <label for="new-log-form">New log:</label>
                         <textarea class="form-control" id="new-log-form" rows="3" name="body"></textarea>
@@ -93,9 +93,14 @@
                                 </p>
                             </li>
                         </ul>
-                        <% if (comment.commentorId.equals(user._id)) { %>
-                            <a href="#" class="btn btn-danger m-3">DELETE</a>
-                        <% } %>
+                        <div class="col-12 px-0 d-flex">
+                            <form action="/trips/<%= trip._id %>/comments/<%= comment._id %>/likes" method="POST">
+                                <button class="btn btn-primary btn-likes m-3">Likes: <%= comment.likes.length %></button>
+                            </form>
+                            <% if (comment.commentorId.equals(user._id)) { %>
+                                <a href="#" class="btn btn-danger m-3">DELETE</a>
+                            <% } %>
+                        </div>
                     </div>
                 <% }) %>
                 <form class="w-100 my-3" action="/trips/<%= trip._id %>/comments" method="POST">
