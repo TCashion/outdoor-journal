@@ -5,7 +5,6 @@ module.exports = {
 };
 
 function index(req, res) {
-    console.log(req.user);
     res.render('users/index', {
         title: "Outdoor Journal - Users", 
         page: 'userIndex',

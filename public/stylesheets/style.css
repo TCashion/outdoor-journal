@@ -59,6 +59,10 @@ a {
   color: var(--light-gray)
 }
 
+.btn-primary:hover {
+  background-color: var(--dark-gray);
+}
+
 .index-container, .show-container {
   flex-wrap: wrap;
   flex-direction: row;
