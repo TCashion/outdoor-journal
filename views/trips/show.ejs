@@ -85,10 +85,15 @@
                         </li>
                     </ul>
                 </div>
+                <form class="w-100 my-3" action="/trips/<%= trip._id %>/comments" method="POST">
+                    <label for="new-comment-form">Add comment:</label>
+                    <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
+                    <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
+                </form>
             <% } else { %> 
                 <form class="w-100 my-3" action="/trips/<%= trip._id %>/comments" method="POST">
-                    <label for="new-comment-form">Be the first to comment:</label>
-                    <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
+                    <label for="first-comment-form">Be the first to comment:</label>
+                    <textarea class="form-control" id="first-comment-form" rows="3" name="body"></textarea>
                     <button type="submit" class="btn btn-primary mt-3">Add Comment</button>
                 </form>
             <% } %>

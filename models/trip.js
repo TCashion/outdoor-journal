@@ -2,17 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema; 
 
 const commentSchema = new mongoose.Schema({
-    content: {
+    body: {
         type: String,
         required: true
     },
-    commentorName: String, // req.user.name
-    commentor: {
-        type: {
-            type: Schema.Types.ObjectId, // req.user._id for creation 
-            ref: 'User',
-            required: true
-        }, 
+    commentorName: String, 
+    commentorId: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
     },
     likes: [Schema.Types.ObjectId], // length of array is the number of likes
         // check for user's id in array to determine whether they like or unlike
