@@ -74,6 +74,11 @@ function deleteOne(req, res) {
 };
 
 function update(req, res) {
-    console.log(req.body)
-    res.send(`update trip ${req.params.id}`)
+    Trip.findById(req.params.id, function(err, trip) {
+        req.body.active = false;
+        Object.assign(trip, req.body);
+        trip.save(function(err) {
+            res.redirect(`/trips/${req.params.id}`);
+        });
+    });
 }

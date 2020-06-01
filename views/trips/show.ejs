@@ -1,6 +1,5 @@
 <%- include ../partials/header.ejs %>
 
-<div class="fluid-container show-container my-sm-5 py-sm-5 justify-content-center">
     <div class="row w-100">
         <div class="col-sm-6">
             <div class="card w-100 my-3">
@@ -28,12 +27,12 @@
                             <% }; %>
                     </p>
                     <% if (trip.loggerId.equals(user._id)) { %>
-                        <div class="col-12 px-sm-0 d-flex">
+                        <div class="col-12 px-0 d-flex">
                             <form action="" method="POST">
                                 <button class="btn btn-primary btn-likes m-1 m-sm-3">Edit trip</button>
                             </form>
                             <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
-                                <button type="submit" class="btn btn-danger m-1 m-sm-3 float-right">DELETE</a>
+                                <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</a>
                             </form>
                         </div>
                     <% } %>
@@ -142,7 +141,6 @@
             <% } %>
         </div>
     </div>
-</div>
 
 <script>
     const mainContainer = document.querySelectorAll('.fluid-container')[0];

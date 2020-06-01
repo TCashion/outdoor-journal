@@ -1,6 +1,5 @@
 <%- include ../partials/header.ejs %>
 
-<div class="fluid-container index-container py-5 my-5">
     <% trips.forEach(function(trip) { %>
         <div class="card m-3" style="width: 18rem;">
             <div class="card-body">
@@ -20,11 +19,11 @@
                 <p>
                     <% if (trip.active) { %>
                         <span style="color:green">
-                            Active
+                            <i>Active</i>
                         </span> 
                     <% } else { %>
                         <span style="color:red">
-                            Close
+                            <i>Finished</i>
                         </span> 
                     <% } %>
                 </p>
@@ -32,6 +31,5 @@
             </div>
         </div>
     <% }); %>
-</div>
 
 <%- include ../partials/footer.ejs %>
