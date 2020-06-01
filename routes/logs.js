@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const logsCtrl = require('../controllers/logs');
 // require isLoggedIn module
-const isLoggedIn = require('./modules/isloggedin');
+const authorizations = require('./modules/authorizations');
 
 // POST /trips/:id/logs/likes
-router.post('/trips/:tripId/logs/:logId/likes', isLoggedIn, logsCtrl.updateLikes);
+router.post('/trips/:tripId/logs/:logId/likes', authorizations.isLoggedIn, logsCtrl.updateLikes);
 // POST /trips/:id/logs
-router.post('/trips/:id/logs', isLoggedIn, logsCtrl.create);
+router.post('/trips/:id/logs', authorizations.isLoggedIn, authorizations.isAuthorizedUser, logsCtrl.create);
 
 module.exports = router; 

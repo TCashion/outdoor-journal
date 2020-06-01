@@ -12,6 +12,13 @@ const commentSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    date: {
+        type: Date, 
+        default: function() {
+            return new Date();
+        },
+        required: true
+    },
     likes: [Schema.Types.ObjectId], // length of array is the number of likes
         // check for user's id in array to determine whether they like or unlike
         // Array.some() with .equals method will return boolean 

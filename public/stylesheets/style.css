@@ -76,6 +76,7 @@ a {
 .btn-danger {
   background-color: var(--danger);
   border-color: var(--danger);
+  width: 100px;
 }
 
 .log-supplementals {

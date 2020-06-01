@@ -16,7 +16,9 @@
                                 Present
                             <% }; %>
                     </p>
-                    <a href="#" class="btn btn-danger float-right">DELETE</a>
+                    <% if (trip.loggerId.equals(user._id)) { %>
+                        <a href="#" class="btn btn-danger float-right">DELETE</a>
+                    <% } %>
                 </div>
             </div>
             <hr>
@@ -33,15 +35,17 @@
             <hr>
         </div>
         <div class="col-sm-6">   
-            <hr>
-            <form method="POST" action="/trips/<%= trip._id %>/logs">
-                <div class="form-group">
-                    <label for="new-log-form">New log:</label>
-                    <textarea class="form-control" id="new-log-form" rows="3" name="body"></textarea>
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                </div>
-            </form> 
-            <hr>
+            <% if (trip.loggerId.equals(user._id)) { %>
+                <hr>
+                <form method="POST" action="/trips/<%= trip._id %>/logs">
+                    <div class="form-group">
+                        <label for="new-log-form">New log:</label>
+                        <textarea class="form-control" id="new-log-form" rows="3" name="body"></textarea>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                </form> 
+                <hr>
+            <% } %>
             <% if (trip.logs.length) { %>
                 <% trip.logs.forEach(function(log) { %>
                     <div class="card w-100 my-3">
@@ -73,18 +77,27 @@
         <div class="col-12">
             <hr class="mt-0">
             <% if (trip.comments.length) { %>
-                <div class="card my-3 w-100">
-                    <div class="card-header">
-                        Comments
+                <% trip.comments.forEach(function(comment) { %>
+                    <div class="card my-3 w-100">
+                        <div class="card-header">
+                            <%= comment.date.toLocaleString([], timeOptionsTwo) %>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <h6>
+                                    <strong><%= comment.commentorName %></strong>
+                                </h6>
+                                <p class="mb-0">
+                                    <br>
+                                    <%= comment.body %>
+                                </p>
+                            </li>
+                        </ul>
+                        <% if (comment.commentorId.equals(user._id)) { %>
+                            <a href="#" class="btn btn-danger m-3">DELETE</a>
+                        <% } %>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <p class="mb-0">
-                                Be the first to comment
-                            </p>
-                        </li>
-                    </ul>
-                </div>
+                <% }) %>
                 <form class="w-100 my-3" action="/trips/<%= trip._id %>/comments" method="POST">
                     <label for="new-comment-form">Add comment:</label>
                     <textarea class="form-control" id="new-comment-form" rows="3" name="body"></textarea>
