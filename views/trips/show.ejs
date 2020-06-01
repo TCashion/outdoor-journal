@@ -103,7 +103,9 @@
                                 <button class="btn btn-primary btn-likes m-3">Likes: <%= comment.likes.length %></button>
                             </form>
                             <% if (comment.commentorId.equals(user._id)) { %>
-                                <a href="#" class="btn btn-danger m-3">DELETE</a>
+                                <form action="/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-danger m-3">DELETE</button>
+                                </form>
                             <% } %>
                         </div>
                     </div>

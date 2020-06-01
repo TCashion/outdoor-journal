@@ -2,7 +2,8 @@ const Trip = require('../../models/trip');
 
 module.exports = {
   isLoggedIn, 
-  isAuthorizedUser
+  isAuthorizedUser,
+  isAuthorizedCommentor
 }
 
 function isLoggedIn(req, res, next) {
@@ -26,4 +27,17 @@ function isAuthorizedUser(req, res, next) {
     }
   });
 };
+
+// same use case, but for comments
+function isAuthorizedCommentor(req, res, next) {
+  Trip.findOne({'comments._id': req.params.id}, function(err, trip) {
+    const commentSubDoc = trip.comments.id(req.params.id);
+    if (commentSubDoc.commentorId.equals(req.user._id)) {
+      next(); 
+    } else {
+      console.log('ALERT: insufficient access for this operation')
+      redirect(`/trips/${req.params.id}`)
+    }
+  });
+}
   

@@ -3,7 +3,8 @@ const Trip = require('../models/trip');
 
 module.exports = {
     create, 
-    updateLikes
+    updateLikes, 
+    delete: deleteOne
 };
 
 function create(req, res) {
@@ -34,3 +35,13 @@ function updateLikes(req, res) {
         res.redirect(`/trips/${req.params.tripId}`);
     });
 }
+
+function deleteOne(req,res) {
+    Trip.findOne({'comments._id': req.params.id}, function(err, trip) {
+        const commentSubDoc = trip.comments.id(req.params.id);
+        commentSubDoc.remove();
+        trip.save(function(err){
+            res.redirect(`/trips/${trip._id}`);
+        });
+    });
+};
