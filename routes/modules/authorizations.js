@@ -21,6 +21,7 @@ function isAuthorizedUser(req, res, next) {
     if (trip.loggerId.equals(req.user._id)) {
       next(); 
     } else {
+      console.log('ALERT: insufficient access for this operation')
       redirect(`/trips/${req.params.id}`)
     }
   });
