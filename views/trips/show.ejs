@@ -28,9 +28,14 @@
                             <% }; %>
                     </p>
                     <% if (trip.loggerId.equals(user._id)) { %>
-                        <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-danger float-right">DELETE</a>
-                        </form>
+                        <div class="col-12 px-sm-0 d-flex">
+                            <form action="" method="POST">
+                                <button class="btn btn-primary btn-likes m-1 m-sm-3">Edit trip</button>
+                            </form>
+                            <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger m-1 m-sm-3 float-right">DELETE</a>
+                            </form>
+                        </div>
                     <% } %>
                 </div>
             </div>
