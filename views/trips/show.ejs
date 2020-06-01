@@ -62,7 +62,7 @@
                             </li>
                         </ul>
                         <div class="log-supplementals">
-                            <form action="/trips/<%= trip._id %>/logs/<%= log._id %>/likes" method="POST">
+                            <form action="/trips/<%= trip._id %>/logs/<%= log._id %>/likes?_method=PUT" method="POST">
                                 <button class="btn btn-primary btn-likes m-3">Likes: <%= log.likes.length %></button>
                             </form>
                             <% if (trip.loggerId.equals(user._id)) { %>
@@ -101,7 +101,7 @@
                             </li>
                         </ul>
                         <div class="col-12 px-0 d-flex">
-                            <form action="/trips/<%= trip._id %>/comments/<%= comment._id %>/likes" method="POST">
+                            <form action="/trips/<%= trip._id %>/comments/<%= comment._id %>/likes?_method=PUT" method="POST">
                                 <button class="btn btn-primary btn-likes m-3">Likes: <%= comment.likes.length %></button>
                             </form>
                             <% if (comment.commentorId.equals(user._id)) { %>

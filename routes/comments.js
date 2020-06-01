@@ -4,8 +4,8 @@ const commentsCtrl = require('../controllers/comments');
 // require isLoggedIn module
 const authorizations = require('./modules/authorizations');
 
-// POST /trips/:tripId/comments/:commentId/likes
-router.post(`/trips/:tripId/comments/:commentId/likes`, authorizations.isLoggedIn, commentsCtrl.updateLikes);
+// PUT /trips/:tripId/comments/:commentId/likes
+router.put(`/trips/:tripId/comments/:commentId/likes`, authorizations.isLoggedIn, commentsCtrl.updateLikes);
 // POST /trips/:id/comments
 router.post('/trips/:id/comments', authorizations.isLoggedIn, commentsCtrl.create);
 // DELETE /comments/:id
