@@ -59,6 +59,10 @@ a {
   color: var(--light-gray)
 }
 
+.btn-likes {
+  width: 100px; 
+}
+
 .btn-primary:hover {
   background-color: var(--dark-gray);
 }
@@ -72,6 +76,11 @@ a {
 .btn-danger {
   background-color: var(--danger);
   border-color: var(--danger);
+}
+
+.log-supplementals {
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 768px) {

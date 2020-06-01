@@ -22,7 +22,7 @@ const commentSchema = new mongoose.Schema({
 });
 
 const logSchema = new mongoose.Schema({
-    content: {
+    body: {
         type: String,
         required: true
     },
@@ -33,7 +33,7 @@ const logSchema = new mongoose.Schema({
         },
         required: true
     },
-    comments: [commentSchema], // JIM
+    comments: [commentSchema],
     likes: [Schema.Types.ObjectId]
 }, {
     timestamps: true
@@ -53,7 +53,7 @@ const tripSchema = new mongoose.Schema({
         // required: true, 
         default: 'My hiking trip...'
     },
-    logs: [logSchema], // JIM
+    logs: [logSchema],
     startDate: {
         type: Date,
         default: function() {

@@ -7,10 +7,10 @@
                 <h5 class="card-title"><%= trip.title %></h5>
                 <p class="card-text"><%= trip.description %></p>
                 <p class="card-text">
-                        <%= trip.startDate.toLocaleString([], options) %> 
+                        <%= trip.startDate.toLocaleString([], timeOptionsOne) %> 
                         - 
                         <% if (trip.endDate) { %>
-                            <%= trip.endDate.toLocaleString([], options); %>
+                            <%= trip.endDate.toLocaleString([], timeOptionsOne); %>
                         <% } else { %>
                             Present
                         <% }; %>
@@ -29,19 +29,48 @@
             </ul>
         </div>
     </div>
-    <div class="col-sm-6">    
-        <div class="card w-100 my-3">
-            <div class="card-header">
-            Date
+    <div class="col-sm-6">   
+        <hr>
+        <form method="POST" action="/trips/<%= trip._id %>/logs">
+            <div class="form-group">
+                <label for="new-log-form">New log:</label>
+                <textarea class="form-control" id="new-log-form" rows="3" name="body"></textarea>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <p class="mb-0">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam magni, obcaecati, natus quis quaerat aspernatur ipsa iusto, dolores qui reprehenderit debitis repellat veritatis! Sit aliquam esse animi, reiciendis beatae nulla!
-                    </p>
-                </li>
-            </ul>
-        </div>
+        </form> 
+        <hr>
+        <% if (trip.logs.length) { %>
+            <% trip.logs.forEach(function(log) { %>
+                <div class="card w-100 my-3">
+                    <div class="card-header">
+                        <%= log.date.toLocaleString([], timeOptionsTwo) %>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <p class="mb-0">
+                                <%= log.body %>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="log-supplementals">
+                        <form action="">
+                            <button class="btn btn-primary btn-likes m-3">Likes: <%= log.likes.length %></button>
+                        </form>
+                        <a href="#" class="card-link">Add Comment</a>
+                    </div>
+                </div>
+            <% }); %>
+
+
+
+        <% } else { %>
+            <div class="card w-100 my-3">
+                <p class="mb-0">
+                    No logs entered yet. Use the form above to enter your first log. 
+                </p>
+            </div>
+        <% }; %>
+        
     </div>
 </div>
 

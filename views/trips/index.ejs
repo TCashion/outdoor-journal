@@ -8,11 +8,11 @@
                 <h6 class="card-subtitle mb-2 text-muted"><%= trip.description %></h6>
                 <p class="card-text">
                     <% if (trip.startDate) { %>
-                        <%= trip.startDate.toLocaleString([], options) %> 
+                        <%= trip.startDate.toLocaleString([], timeOptionsOne) %> 
                     <% } %>
                         - 
                     <% if (trip.endDate) { %>
-                        <%= trip.endDate.toLocaleString([], options) %>
+                        <%= trip.endDate.toLocaleString([], timeOptionsOne) %>
                     <% } else { %>
                          Present
                     <% } %>

@@ -13,5 +13,4 @@ router.get('/trips/:id', isLoggedIn, tripsCtrl.show);
 // POST /trips
 router.post('/trips', isLoggedIn, tripsCtrl.create);
 
-
 module.exports = router;

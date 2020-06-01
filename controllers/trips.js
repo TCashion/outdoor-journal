@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Trip = require('../models/trip');
-const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const timeOptionsOne = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const timeOptionsTwo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
 const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'].sort(); 
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
     new: newTrip,
     create, 
     show
-}
+};
 
 function index(req, res) {
     Trip.find({loggerId : req.user._id}, function(err, trips) {
@@ -17,7 +18,7 @@ function index(req, res) {
             page: 'tripIndex',
             user: req.user, 
             trips,
-            options
+            timeOptionsOne
         });
     });
 };
@@ -49,7 +50,8 @@ function show(req, res) {
             user: req.user,
             title: `${trip.title}`,
             page: '',
-            options
+            timeOptionsOne,
+            timeOptionsTwo
         });
     });  
 };
