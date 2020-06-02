@@ -16,6 +16,8 @@ module.exports = {
 
 function index(req, res) {
     Trip.find({loggerId : req.user._id}, function(err, trips) {
+        trips.sort(sortByDate);
+        trips.sort(sortByActive);
         res.render('trips/index', {
             title: 'Your Trips', 
             trips,
@@ -40,14 +42,6 @@ function create(req, res) {
         if (err) res.send('invalid data');
         res.redirect(`/trips/${trip.id}`);
     });
-};
-
-function parseCoordinates(location) {
-    const coordinates = location.split(',').map(coord => parseFloat(coord));
-    return {
-        lat: coordinates[0],
-        long: coordinates[1]
-    };
 };
 
 function show(req, res) {
@@ -85,3 +79,23 @@ function edit(req, res) {
         timeOptionsTwo
     }); 
 }
+
+// helper functions 
+function parseCoordinates(location) {
+    const coordinates = location.split(',').map(coord => parseFloat(coord));
+    return {
+        lat: coordinates[0],
+        long: coordinates[1]
+    };
+};
+
+function sortByDate(tripOne, tripTwo) {
+    return tripOne.startDate - tripTwo.startDate;
+};
+
+function sortByActive(tripOne, tripTwo) {
+    if (tripOne.active && !tripTwo.active) return -1;
+    if (!tripOne.active && tripTwo.active) return 1;
+    if (!tripOne.active && !tripTwo.active 
+        || tripOne.active && tripTwo.active) return 0;
+};
