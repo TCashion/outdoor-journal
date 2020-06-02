@@ -9,6 +9,6 @@ router.put(`/trips/:tripId/comments/:commentId/likes`, authorizations.isLoggedIn
 // POST /trips/:id/comments
 router.post('/trips/:id/comments', authorizations.isLoggedIn, commentsCtrl.create);
 // DELETE /comments/:id
-router.delete('/comments/:id', authorizations.isLoggedIn, authorizations.isAuthorizedCommentor, commentsCtrl.delete)
+router.delete('/comments/:id', authorizations.isLoggedIn, authorizations.isCommentCreator, commentsCtrl.delete)
 
 module.exports = router; 

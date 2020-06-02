@@ -51,7 +51,7 @@ function show(req, res) {
             trip, 
             user: req.user,
             title: `${trip.title}`,
-            page: '',
+            page: 'show',
             timeOptionsOne,
             timeOptionsTwo
         });

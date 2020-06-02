@@ -7,9 +7,8 @@ const authorizations = require('./modules/authorizations');
 // PUT /trips/:id/logs/likes
 router.put('/trips/:tripId/logs/:logId/likes', authorizations.isLoggedIn, logsCtrl.updateLikes);
 // POST /trips/:id/logs
-router.post('/trips/:id/logs', authorizations.isLoggedIn, authorizations.isAuthorizedUser, logsCtrl.create);
+router.post('/trips/:id/logs', authorizations.isLoggedIn, authorizations.isTripCreator, logsCtrl.create);
 // DELETE /logs/:id
-router.delete('/logs/:id', authorizations.isLoggedIn
-, authorizations.isLoggedIn, logsCtrl.delete);
+router.delete('/logs/:id', authorizations.isLoggedIn, authorizations.isLogCreator, logsCtrl.delete);
 
 module.exports = router; 

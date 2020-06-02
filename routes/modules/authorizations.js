@@ -2,8 +2,9 @@ const Trip = require('../../models/trip');
 
 module.exports = {
   isLoggedIn, 
-  isAuthorizedUser,
-  isAuthorizedCommentor
+  isTripCreator,
+  isCommentCreator, 
+  isLogCreator
 }
 
 function isLoggedIn(req, res, next) {
@@ -16,7 +17,7 @@ function isLoggedIn(req, res, next) {
 
 // for use in creating logs or deleting trip content
 // ensures the user is the trip owner
-function isAuthorizedUser(req, res, next) {
+function isTripCreator(req, res, next) {
   // verifies that the logged-in user also owns the trip
   Trip.findById(req.params.id, function(err, trip) {
     if (trip.loggerId.equals(req.user._id)) {
@@ -28,8 +29,20 @@ function isAuthorizedUser(req, res, next) {
   });
 };
 
+function isLogCreator(req, res, next) {
+  // verifies that the logged-in user also owns the trip
+  Trip.findOne({'logs._id': req.params.id}, function(err, trip) {
+    if (trip.loggerId.equals(req.user._id)) {
+      next(); 
+    } else {
+      console.log('ALERT: insufficient access for this operation')
+      redirect(`/trips/${req.params.id}`)
+    }
+  });
+};
+
 // same use case, but for comments
-function isAuthorizedCommentor(req, res, next) {
+function isCommentCreator(req, res, next) {
   Trip.findOne({'comments._id': req.params.id}, function(err, trip) {
     const commentSubDoc = trip.comments.id(req.params.id);
     if (commentSubDoc.commentorId.equals(req.user._id)) {
