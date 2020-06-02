@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const Trip = require('../models/trip');
 const timeOptionsOne = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-const timeOptionsTwo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+const timeOptionsTwo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: 'true'};
 const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'].sort(); 
 
 module.exports = {
@@ -68,9 +68,8 @@ function deleteOne(req, res) {
 };
 
 function update(req, res) {
-    if (req.body.endDate) {
-        req.body.active = false;
-    };
+    if (req.body.endDate) req.body.active = false;
+    if (!req.body.endDate) req.body.active = true;
     Object.assign(req.trip, req.body);
     req.trip.save(function(err) {
         res.redirect(`/trips/${req.params.id}`);

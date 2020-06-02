@@ -5,22 +5,33 @@
 <div class="container py-2">
     <hr>
     <h2>Edit trip details: <i style="color:green"><%=  trip.title%></i></h1>
-    <form id="add-location-form" method="POST" action="">
+    <form id="add-location-form" method="POST" action="/trips/<%= trip._id %>?_method=PUT">
         <div class="form-group">
             <label for="trip-title">Trip title:</label>
-            <input type="text" class="form-control" id="trip-title" name="title" value="<%= trip.title %>" required>
+            <input type="text" class="form-control" id="trip-title" 
+            name="title" value="<%= trip.title %>" required>
         </div>
         <div class="form-group">
             <label for="trip-description">Trip description:</label>
-            <input type="text" class="form-control" id="trip-description" name="description" value="<%= trip.description %>"  required>
+            <input type="text" class="form-control" id="trip-description" 
+            name="description" value="<%= trip.description %>"  required>
         </div>
         <div class="form-group">
             <label for="trip-start-date">Trip start date:</label>
-            <input type="datetime-local" class="form-control" id="trip-start-date" name="startDate" value="<%= trip.startDate %>" required>
+            <input type="datetime-local" class="form-control" id="trip-start-date" name="startDate" 
+            value="<%= new Date(trip.startDate).toISOString().slice(0,19) %>"
+            min="2015-01-01T00:00" max="2050-01-01T00:00" required>
         </div>
         <div class="form-group">
             <label for="trip-end-date">Trip end date:</label>
-            <input type="datetime-local" class="form-control" id="trip-end-date" name="startDate" value="<%= trip.startDate %>" required>
+            <div class="form-check form-check-inline mx-3">
+                <input class="form-check-input" type="checkbox" 
+                name="location-radio" id="end-date-checkbox">
+                <label class="form-check-label" for="end-date-checkbox">No end date yet</label>
+            </div>
+            <input type="datetime-local" class="form-control" id="trip-end-date" name="endDate" 
+            value="<% if (trip.endDate) { %><%= new Date(trip.endDate).toISOString().slice(0,19) %><% } else { %><%= null %><% } %>" 
+            min="2015-01-01T00:00" max="2050-01-01T00:00">
         </div>
         <div class="form-group">
             <label for="classification">Example select</label>
@@ -36,21 +47,25 @@
         </div>
         <div class="form-group">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="location-radio" id="current-radio">
+                <input class="form-check-input" type="radio" 
+                name="location-radio" id="current-radio">
                 <label class="form-check-label" for="current-radio">Current location</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="location-radio" id="custom-radio" checked>
+                <input class="form-check-input" type="radio" 
+                name="location-radio" id="custom-radio" checked>
                 <label class="form-check-label" for="custom-radio">Custom location</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="location-radio" id="skip-radio">
+                <input class="form-check-input" type="radio" 
+                name="location-radio" id="skip-radio">
                 <label class="form-check-label" for="skip-radio">Skip</label>
             </div>
         </div>
         <div class="form-group" id="location-input">
             <label for="trip-location">Enter location coordinates (lattitude and longitude coordinates):</label>
-            <input type="text" class="form-control" id="trip-location" name="location" value="<%= trip.location %>">
+            <input type="text" class="form-control" id="trip-location" 
+            name="location" value="<%= trip.location %>">
         </div>
         <button type="submit" class="btn btn-primary">Update Trip</button>
     </form>
@@ -70,6 +85,7 @@
         </div>
     </div>
 </div>
+
 
 <%- include ../partials/formscript.ejs %>
 <%- include ../partials/footer.ejs %>
