@@ -67,7 +67,7 @@ a {
   background-color: var(--dark-gray);
 }
 
-.index-container, .show-container {
+.show-container {
   flex-wrap: wrap;
   flex-direction: row;
   display: flex;
@@ -77,6 +77,10 @@ a {
   background-color: var(--danger);
   border-color: var(--danger);
   width: 100px;
+}
+
+.link-danger {
+  color: var(--danger);
 }
 
 .hidden {

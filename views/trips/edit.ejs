@@ -1,11 +1,75 @@
 <%- include ../partials/header.ejs %>
-
-<% if (trip.loggerId.equals(user._id)) { %>
-    <div class="col-12 px-0 d-flex">
-        <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</a>
-        </form>
+<div class="container">
+    <a href="/trips/<%= trip._id %>" class="btn btn-primary">Go Back</a>
+</div>
+<div class="container py-2">
+    <hr>
+    <h2>Edit trip details: <i style="color:green"><%=  trip.title%></i></h1>
+    <form id="add-location-form" method="POST" action="">
+        <div class="form-group">
+            <label for="trip-title">Trip title:</label>
+            <input type="text" class="form-control" id="trip-title" name="title" value="<%= trip.title %>" required>
+        </div>
+        <div class="form-group">
+            <label for="trip-description">Trip description:</label>
+            <input type="text" class="form-control" id="trip-description" name="description" value="<%= trip.description %>"  required>
+        </div>
+        <div class="form-group">
+            <label for="trip-start-date">Trip start date:</label>
+            <input type="datetime-local" class="form-control" id="trip-start-date" name="startDate" value="<%= trip.startDate %>" required>
+        </div>
+        <div class="form-group">
+            <label for="trip-end-date">Trip end date:</label>
+            <input type="datetime-local" class="form-control" id="trip-end-date" name="startDate" value="<%= trip.startDate %>" required>
+        </div>
+        <div class="form-group">
+            <label for="classification">Example select</label>
+            <select class="form-control" id="classification" name="classification">
+            <% classifications.forEach(function (classification) { %>
+                <option
+                    <% if (trip.classification === classification) { %>
+                        <%= "selected" %>
+                    <% } %>
+                ><%= classification %></option>
+            <% }); %>
+            </select>
+        </div>
+        <div class="form-group">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="location-radio" id="current-radio">
+                <label class="form-check-label" for="current-radio">Current location</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="location-radio" id="custom-radio" checked>
+                <label class="form-check-label" for="custom-radio">Custom location</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="location-radio" id="skip-radio">
+                <label class="form-check-label" for="skip-radio">Skip</label>
+            </div>
+        </div>
+        <div class="form-group" id="location-input">
+            <label for="trip-location">Enter location coordinates (lattitude and longitude coordinates):</label>
+            <input type="text" class="form-control" id="trip-location" name="location" value="<%= trip.location %>">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Trip</button>
+    </form>
+</div>
+<div class="container">
+    <hr>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+                <a href="" class="m-1 m-sm-3 link-danger" id="delete-link">DELETE TRIP</a>
+                <div id="delete-verification" style="display:none">
+                    <hr>
+                    <p>Are you sure you want to delete this trip?</p>
+                    <button type="submit" class="btn btn-danger m-1 m-sm-3 w-75">DELETE TRIP</a>
+                </div>
+            </form>
+        </div>
     </div>
-<% } %>
+</div>
 
+<%- include ../partials/formscript.ejs %>
 <%- include ../partials/footer.ejs %>

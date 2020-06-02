@@ -68,7 +68,9 @@ function deleteOne(req, res) {
 };
 
 function update(req, res) {
-    req.body.active = false;
+    if (req.body.endDate) {
+        req.body.active = false;
+    };
     Object.assign(req.trip, req.body);
     req.trip.save(function(err) {
         res.redirect(`/trips/${req.params.id}`);
@@ -79,6 +81,7 @@ function edit(req, res) {
     res.render('trips/edit', {
         trip: req.trip, 
         title: `${req.trip.title}`,
+        classifications,
         timeOptionsOne,
         timeOptionsTwo
     }); 
