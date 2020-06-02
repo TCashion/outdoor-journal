@@ -73,7 +73,7 @@ function update(req, res) {
 function edit(req, res) {
     res.render('trips/edit', {
         trip: req.trip, 
-        title: `${req.trip.title}`,
+        title: 'Edit Trip',
         classifications,
         timeOptionsOne,
         timeOptionsTwo
