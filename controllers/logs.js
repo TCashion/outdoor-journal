@@ -8,12 +8,10 @@ module.exports = {
 };
 
 function create(req, res) {
-    Trip.findById(req.params.id, function(err, trip) {
-        trip.logs.push(req.body);
-        trip.save(function(err) {
+        req.trip.logs.push(req.body);
+        req.trip.save(function(err) {
             res.redirect(`/trips/${req.params.id}`);
         });
-    });
 };
 
 function updateLikes(req, res) {
@@ -34,11 +32,9 @@ function updateLikes(req, res) {
 };
 
 function deleteOne(req, res) {
-    Trip.findOne({'logs._id': req.params.id}, function(err, trip) {
-        const logSubDoc = trip.logs.id(req.params.id);
+        const logSubDoc = req.trip.logs.id(req.params.id);
         logSubDoc.remove();
-        trip.save(function(err) {
-            res.redirect(`/trips/${trip._id}`);
+        req.trip.save(function(err) {
+            res.redirect(`/trips/${req.trip._id}`);
         })
-    }); 
 };

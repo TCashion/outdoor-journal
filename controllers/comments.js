@@ -37,11 +37,9 @@ function updateLikes(req, res) {
 }
 
 function deleteOne(req,res) {
-    Trip.findOne({'comments._id': req.params.id}, function(err, trip) {
-        const commentSubDoc = trip.comments.id(req.params.id);
-        commentSubDoc.remove();
-        trip.save(function(err){
-            res.redirect(`/trips/${trip._id}`);
-        });
+    const commentSubDoc = req.trip.comments.id(req.params.id);
+    commentSubDoc.remove();
+    req.trip.save(function(err){
+        res.redirect(`/trips/${req.trip._id}`);
     });
 };
