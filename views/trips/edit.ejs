@@ -1,0 +1,11 @@
+<%- include ../partials/header.ejs %>
+
+<% if (trip.loggerId.equals(user._id)) { %>
+    <div class="col-12 px-0 d-flex">
+        <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</a>
+        </form>
+    </div>
+<% } %>
+
+<%- include ../partials/footer.ejs %>

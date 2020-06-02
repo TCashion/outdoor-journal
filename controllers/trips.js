@@ -10,7 +10,8 @@ module.exports = {
     create, 
     show, 
     delete: deleteOne, 
-    update
+    update, 
+    edit
 };
 
 function index(req, res) {
@@ -45,8 +46,16 @@ function create(req, res) {
     });
 };
 
+function parseCoordinates(location) {
+    const coordinates = location.split(',').map(coord => parseFloat(coord));
+    return {
+        lat: coordinates[0],
+        long: coordinates[1]
+    };
+};
+
 function show(req, res) {
-    Trip.findById((req.params.id), function(err, trip) {
+    Trip.findById(req.params.id, function(err, trip) {
         res.render('trips/show', {
             trip, 
             user: req.user,
@@ -58,27 +67,27 @@ function show(req, res) {
     });  
 };
 
-function parseCoordinates(location) {
-    const coordinates = location.split(',').map(coord => parseFloat(coord));
-    return {
-        lat: coordinates[0],
-        long: coordinates[1]
-    };
-};
-
 function deleteOne(req, res) {
-    Trip.findById(req.params.id, function(err, trip) {
-        trip.remove();
-        res.redirect('/trips');
+    req.trip.remove(function(err) {
+        res.redirect('/trips')
     });
 };
 
 function update(req, res) {
-    Trip.findById(req.params.id, function(err, trip) {
-        req.body.active = false;
-        Object.assign(trip, req.body);
-        trip.save(function(err) {
-            res.redirect(`/trips/${req.params.id}`);
-        });
+    req.body.active = false;
+    Object.assign(req.trip, req.body);
+    req.trip.save(function(err) {
+        res.redirect(`/trips/${req.params.id}`);
     });
+};
+
+function edit(req, res) {
+    res.render('trips/edit', {
+        trip: req.trip, 
+        user: req.user,
+        title: `${req.trip.title}`,
+        page: 'edit',
+        timeOptionsOne,
+        timeOptionsTwo
+    }); 
 }

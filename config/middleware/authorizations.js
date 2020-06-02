@@ -21,6 +21,8 @@ function isTripCreator(req, res, next) {
   // verifies that the logged-in user also owns the trip
   Trip.findById(req.params.id, function(err, trip) {
     if (trip.loggerId.equals(req.user._id)) {
+      console.log('Authorized user.')
+      req.trip = trip; 
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
@@ -33,6 +35,8 @@ function isLogCreator(req, res, next) {
   // verifies that the logged-in user also owns the trip
   Trip.findOne({'logs._id': req.params.id}, function(err, trip) {
     if (trip.loggerId.equals(req.user._id)) {
+      console.log('Authorized user.')
+      req.trip = trip; 
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
@@ -46,6 +50,8 @@ function isCommentCreator(req, res, next) {
   Trip.findOne({'comments._id': req.params.id}, function(err, trip) {
     const commentSubDoc = trip.comments.id(req.params.id);
     if (commentSubDoc.commentorId.equals(req.user._id)) {
+      console.log('Authorized user.')
+      req.trip = trip; 
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')

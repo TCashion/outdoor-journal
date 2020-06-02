@@ -5,5 +5,4 @@ const usersCtrl = require('../controllers/users');
 /* GET user landing page */
 router.get('/users', usersCtrl.index);
 
-
 module.exports = router;

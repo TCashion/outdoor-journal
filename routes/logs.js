@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const logsCtrl = require('../controllers/logs');
 // require isLoggedIn module
-const authorizations = require('./modules/authorizations');
+const authorizations = require('../config/middleware/authorizations.js');
 
 // PUT /trips/:id/logs/likes
 router.put('/trips/:tripId/logs/:logId/likes', authorizations.isLoggedIn, logsCtrl.updateLikes);
