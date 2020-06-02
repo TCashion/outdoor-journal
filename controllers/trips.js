@@ -18,8 +18,6 @@ function index(req, res) {
     Trip.find({loggerId : req.user._id}, function(err, trips) {
         res.render('trips/index', {
             title: 'Your Trips', 
-            page: 'tripIndex',
-            user: req.user, 
             trips,
             timeOptionsOne
         });
@@ -29,8 +27,6 @@ function index(req, res) {
 function newTrip(req, res) {
     res.render('trips/new', {
         title: 'New Trip', 
-        page: 'newTrip',
-        user: req.user,
         classifications
     });
 };
@@ -58,9 +54,7 @@ function show(req, res) {
     Trip.findById(req.params.id, function(err, trip) {
         res.render('trips/show', {
             trip, 
-            user: req.user,
             title: `${trip.title}`,
-            page: 'show',
             timeOptionsOne,
             timeOptionsTwo
         });
@@ -84,9 +78,7 @@ function update(req, res) {
 function edit(req, res) {
     res.render('trips/edit', {
         trip: req.trip, 
-        user: req.user,
         title: `${req.trip.title}`,
-        page: 'edit',
         timeOptionsOne,
         timeOptionsTwo
     }); 
