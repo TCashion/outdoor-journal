@@ -3,6 +3,8 @@ const Trip = require('../models/trip');
 const timeOptionsOne = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const timeOptionsTwo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: 'true'};
 const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'].sort(); 
+// rootURL for animals API
+const rootURL = 'https://explorer.natureserve.org/';
 
 module.exports = {
     index,
@@ -51,7 +53,8 @@ function show(req, res) {
             title: `${trip.title}`,
             timeOptionsOne,
             timeOptionsTwo, 
-            mapsApi: process.env.GOOGLE_MAPS
+            mapsApi: process.env.GOOGLE_MAPS, 
+            rootURL
         });
     });  
 };

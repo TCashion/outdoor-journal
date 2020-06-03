@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 var tripsRouter = require('./routes/trips');
 var logsRouter = require('./routes/logs');
 var commentsRouter = require('./routes/comments');
+var animalsRouter = require('./routes/animals');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', animalsRouter);
 app.use('/', logsRouter);
 app.use('/', commentsRouter);
 app.use('/', tripsRouter);
