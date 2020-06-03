@@ -1,10 +1,11 @@
 <%- include ../partials/header.ejs %>
+
 <div class="container">
     <a href="/trips/<%= trip._id %>" class="btn btn-primary">Go Back</a>
 </div>
 <div class="container py-2">
     <hr>
-    <h2>Edit trip details: <i style="color:green"><%=  trip.title%></i></h1>
+    <h3 class="mb-5">Edit trip details: <i style="color:green"><%=  trip.title%></i></h3>
     <form id="add-location-form" method="POST" action="/trips/<%= trip._id %>?_method=PUT">
         <div class="form-group">
             <label for="trip-title">Trip title:</label>
@@ -81,7 +82,7 @@
 </div>
 <div class="container">
     <hr>
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="max-width: 18rem;">
         <div class="card-body">
             <form action="/trips/<%= trip._id %>?_method=DELETE" method="POST">
                 <a href="" class="m-1 m-sm-3 link-danger" id="delete-link">DELETE TRIP</a>

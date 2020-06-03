@@ -8,9 +8,13 @@
   --danger: rgb(134, 0, 0);
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Karla', sans-serif;
   background-color: var(--light-gray);
   color: var(--dark-gray);
 }
@@ -97,6 +101,10 @@ a {
   border-radius: 3px;
 }
 
+.page-header {
+  color: var(--dark-green);
+}
+
 @media (max-width: 768px) {
   .big-header {
     display: none;
@@ -105,10 +113,20 @@ a {
   .log-in-out-button {
     float: left;
   }
+
+  .page-header {
+    font-size: 2.2rem;
+  }
 }
 
 @media (min-width: 768px) {
   .small-header {
     display: none;
+  }
+}
+
+@media (width: 768px) {
+  .small-header {
+    display: block;
   }
 }

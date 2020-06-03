@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  <!-- link google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Karla&display=swap" rel="stylesheet">
   <!-- link bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- link stylesheet -->
@@ -86,4 +88,9 @@
       </ul>
       <hr>
   </header>
-  <div class="fluid-container show-container my-sm-5 py-sm-5 <% if (title !== 'Your Trips') { %> justify-content-center <% } %>">
+  <div class="fluid-container show-container mb-sm-5 <% if (title !== 'Your Trips') { %> justify-content-center <% } %>">
+  <% if (title !== 'Users') { %>
+    <div class="row d-flex justify-content-left w-100 mx-3 my-5">
+      <h1 class="page-header"><i><%= title %></i></h1>
+    </div>
+  <% } %>
