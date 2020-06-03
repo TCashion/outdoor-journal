@@ -18,8 +18,11 @@
         </div>
         <div class="form-group">
             <label for="trip-start-date">Trip start date:</label>
+            <% let date = new Date(trip.startDate) %>
+            <% date.setMinutes(date.getMinutes() - date.getTimezoneOffset()) %>
+            <% const startDateString = date.toISOString().slice(0,16); %>
             <input type="datetime-local" class="form-control" id="trip-start-date" name="startDate" 
-            value="<%= new Date(trip.startDate).toISOString().slice(0,19) %>"
+            value="<%= startDateString %>"
             min="2015-01-01T00:00" max="2050-01-01T00:00" required>
         </div>
         <div class="form-group">
@@ -29,8 +32,11 @@
                 name="location-radio" id="end-date-checkbox">
                 <label class="form-check-label" for="end-date-checkbox">No end date yet</label>
             </div>
+                <% let dateTwo = new Date(trip.endDate) %>
+                <% dateTwo.setMinutes(dateTwo.getMinutes() - dateTwo.getTimezoneOffset()) %>
+                <% const endDateString = dateTwo.toISOString().slice(0,16); %>
             <input type="datetime-local" class="form-control" id="trip-end-date" name="endDate" 
-            value="<% if (trip.endDate) { %><%= new Date(trip.endDate).toISOString().slice(0,19) %><% } else { %><%= null %><% } %>" 
+            value="<% if (trip.endDate) { %><%= endDateString %><% } %>" 
             min="2015-01-01T00:00" max="2050-01-01T00:00">
         </div>
         <div class="form-group">
