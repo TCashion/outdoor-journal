@@ -73,7 +73,14 @@ const tripSchema = new mongoose.Schema({
     comments: [commentSchema],
     pictures: [String],
     animals: [String],
-    location: {lat: Number, long: Number},
+    location: {
+        lat: {
+            type: Number, 
+        },
+        long: {
+            type: Number
+        }
+    },
     active: {
         type: Boolean,
         required: true, 

@@ -63,10 +63,16 @@ function deleteOne(req, res) {
 };
 
 function update(req, res) {
+    const updatedTrip = req.trip; 
     if (req.body.endDate) req.body.active = false;
     if (!req.body.endDate) req.body.active = true;
-    Object.assign(req.trip, req.body);
-    req.trip.save(function(err) {
+    updatedTrip.location = parseCoordinates(req.body.location);
+    Object.assign(updatedTrip, req.body);
+    console.log(updatedTrip)
+    console.log(typeof updatedTrip.location)
+    console.log(typeof updatedTrip.location.lat)
+    console.log(typeof updatedTrip.location.long)
+    updatedTrip.save(function(err) {
         res.redirect(`/trips/${req.params.id}`);
     });
 };
