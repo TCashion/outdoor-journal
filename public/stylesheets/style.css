@@ -1,7 +1,7 @@
 :root {
   --base: #7EAA61;
   --light-green: #B8F78D;
-  --gray: #AAB9A1;
+  --gray-green: #AAB9A1;
   --light-gray: rgb(244, 245, 244);
   --dark-green: #597844;
   --dark-gray: rgb(45,45,45);
@@ -64,7 +64,7 @@ a {
 }
 
 .btn-primary:hover {
-  background-color: var(--dark-gray);
+  background-color: var(--dark-gray-green);
 }
 
 .show-container {
@@ -85,6 +85,16 @@ a {
 
 .hidden {
   display:none;
+}
+
+#map {
+  height: 250px;
+}
+
+.user-form {
+  background-color: var(--gray);
+  padding: 5px;
+  border-radius: 3px;
 }
 
 @media (max-width: 768px) {

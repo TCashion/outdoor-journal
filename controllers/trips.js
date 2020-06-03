@@ -50,7 +50,8 @@ function show(req, res) {
             trip, 
             title: `${trip.title}`,
             timeOptionsOne,
-            timeOptionsTwo
+            timeOptionsTwo, 
+            mapsApi: process.env.GOOGLE_MAPS
         });
     });  
 };
