@@ -57,6 +57,11 @@ a {
   max-height: 350px;
 }
 
+.thumbnail-pic {
+  height: 38px;
+  width: 38px;
+}
+
 .btn-primary {
   background-color: var(--dark-green);
   border-color: var(--dark-green);

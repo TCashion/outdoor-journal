@@ -19,45 +19,52 @@
 <body>
   <header class="big-header">
       
-      <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link 
-            <% if (title === 'Users') { %>
-              active
-            <% } %>
-            " href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link 
-            <% if (title === 'Your Trips') { %>
-              active
-            <% } %>
-            " href="/trips">Your Trips</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link 
-            <% if (title === 'Profile') { %>
-              active
-            <% } %>
-            " href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link 
-            <% if (title === 'New Trip') { %>
-              active
-            <% } %>
-            " href="/trips/new">+ Add Trip</a>
-          </li>
-      </ul>
+    <div class="row d-flex justify-content-end">
       <% if (user) { %>
-          <form action="/logout">
-              <button class="btn btn-primary log-in-out-button m-3">Log Out</button>
-          </form>
+        <div class="text-center my-3">
+          <p class="mx-3" style="display:inline"><i>Welcome</i> <%= user.name %></p>
+          <img src="<%= user.avatar %>" class="rounded-circle thumbnail-pic" alt="Google Profile Picture">
+        </div>
+        <form action="/logout">
+          <button class="btn btn-primary log-in-out-button m-3">Log Out</button>
+        </form>
       <% } else { %>
-          <form action="/auth/google">
-              <button class="btn btn-primary log-in-out-button m-3">Login with Google</button>
-          </form>
+        <form action="/auth/google">
+          <button class="btn btn-primary log-in-out-button m-3">Login with Google</button>
+        </form>
       <% } %>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link 
+          <% if (title === 'Users') { %>
+            active
+          <% } %>
+          " href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link 
+          <% if (title === 'Your Trips') { %>
+            active
+          <% } %>
+          " href="/trips">Your Trips</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link 
+          <% if (title === 'Profile') { %>
+            active
+          <% } %>
+          " href="#">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link 
+          <% if (title === 'New Trip') { %>
+            active
+          <% } %>
+          " href="/trips/new">+ Add Trip</a>
+        </li>
+    </ul>
       
   </header>
 
@@ -77,13 +84,14 @@
             <a class="nav-link" href="/trips/new">+ Add Trip</a>
           </li>
           <% if (user) { %>
-              <form action="/logout">
-                  <button class="btn btn-primary log-in-out-button m-3">Log Out</button>
-              </form>
+            <form action="/logout">
+              <button class="btn btn-primary log-in-out-button m-3">Log Out</button>
+              <img src="<%= user.avatar %>" class="rounded-circle thumbnail-pic my-3" alt="Google Profile Picture">
+            </form>
           <% } else { %>
-              <form action="/auth/google">
-                  <button class="btn btn-primary log-in-out-button m-3">Login with Google</button>
-              </form>
+            <form action="/auth/google">
+              <button class="btn btn-primary log-in-out-button m-3">Login with Google</button>
+            </form>
           <% } %>
       </ul>
       <hr>
