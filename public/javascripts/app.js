@@ -29,9 +29,7 @@ locationForm.addEventListener('click', function(e) {
     if (noEndDateEl.checked) {
         endDateInputEl.value = null; 
         endDateInputEl.setAttribute('style', 'display:none'); 
-        console.log('checked')
     } else if (!noEndDateEl.checked) {
-        console.log('unchecked')
         endDateInputEl.setAttribute('style', 'display:block'); 
     };
 });

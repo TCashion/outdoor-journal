@@ -1,8 +1,5 @@
 const User = require('../models/user');
 const Trip = require('../models/trip');
-// set up momentJS
-const moment = require('moment')
-moment().format();
 const timeOptionsOne = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const timeOptionsTwo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: 'true'};
 const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'].sort(); 
@@ -74,9 +71,6 @@ function update(req, res) {
 };
 
 function edit(req, res) {
-    console.log(req.trip.startDate);
-    console.log(moment(req.trip.startDate))
-    console.log(moment(req.trip.startDate).format("YYYY-MM-DDThh"))
     res.render('trips/edit', {
         trip: req.trip, 
         title: 'Edit Trip',
