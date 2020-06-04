@@ -11,7 +11,8 @@ module.exports = {
     show, 
     delete: deleteOne, 
     update, 
-    edit
+    edit, 
+    updateDate
 };
 
 function index(req, res) {
@@ -63,7 +64,6 @@ function deleteOne(req, res) {
 };
 
 function update(req, res) {
-
     if (req.body.endDate) req.body.active = false;
     if (!req.body.endDate) req.body.active = true;  
     Object.assign(req.trip, req.body);
@@ -82,6 +82,15 @@ function update(req, res) {
             res.redirect(`/trips/${req.params.id}`);
         })
 };
+
+function updateDate(req, res) {
+    if (req.body.endDate) req.body.active = false;
+    if (!req.body.endDate) req.body.active = true;  
+    Object.assign(req.trip, req.body);
+    req.trip.save(function(err) {
+        res.redirect(`/trips/${req.params.id}`);
+    });
+}
 
 function edit(req, res) {
     res.render('trips/edit', {

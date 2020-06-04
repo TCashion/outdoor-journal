@@ -20,7 +20,7 @@
                                     <br>
                                     <a id="add-end-date" href="">Set end date</a>
                                     <div class="form-group hidden" id="add-end-date-form">
-                                        <form action="/trips/<%= trip._id %>?_method=PUT" method="POST">
+                                        <form action="/trips/<%= trip._id %>/date?_method=PUT" method="POST">
                                             <label for="trip-end-date">Enter end date</label>
                                             <input type="datetime-local" class="form-control" id="trip-end-date" name="endDate" required>
                                             <button class="btn btn-primary my-3">Submit</button>
