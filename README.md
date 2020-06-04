@@ -47,3 +47,4 @@ In the future I plan to implement the following:
 * Ability to edit your profile information 
 * Scrollable list of active trips on user landing page
 * Ability to search for trips 
+* Ability to report errors 
