@@ -6,7 +6,7 @@
 <div class="container py-2">
     <hr>
     <h3 class="mb-5">Edit trip details: <i style="color:green"><%=  trip.title%></i></h3>
-    <form id="add-location-form" method="POST" action="/trips/<%= trip._id %>?_method=PUT">
+    <form id="trip-details-form" method="POST" action="/trips/<%= trip._id %>?_method=PUT">
         <div class="form-group">
             <label for="trip-title">Trip title:</label>
             <input type="text" class="form-control" id="trip-title" 
@@ -73,9 +73,11 @@
             </div>
         </div>
         <div class="form-group" id="location-input">
+            <div class="hidden" id="lat-coords"><%= trip.location.lat %></div>
+            <div class="hidden" id="long-coords"><%= trip.location.long %></div>
             <label for="trip-location">Enter location coordinates (lattitude and longitude coordinates):</label>
             <input type="text" class="form-control" id="trip-location" 
-            name="location" value="<%= trip.location %>">
+            name="location" value="<%= trip.location.lat %>, <%= trip.location.long %>">
         </div>
         <button type="submit" class="btn btn-primary">Update Trip</button>
     </form>
