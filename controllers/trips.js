@@ -63,23 +63,24 @@ function deleteOne(req, res) {
 };
 
 function update(req, res) {
+
     if (req.body.endDate) req.body.active = false;
     if (!req.body.endDate) req.body.active = true;  
     Object.assign(req.trip, req.body);
-    req.trip.update({
-        title: req.trip.title,
-        description: req.trip.description,
-        startDate: req.trip.startDate,
-        endDate: req.trip.endDate,
-        active: req.trip.active
-    },
-    {
-        $set: {
-            location: parseCoordinates(req.body.location)
-        }
-    }, function(err) {
-        res.redirect(`/trips/${req.params.id}`);
-    })
+    req.trip.updateOne(
+        {
+            $set: {
+                title: req.trip.title,
+                description: req.trip.description,
+                startDate: req.trip.startDate,
+                endDate: req.trip.endDate,
+                active: req.trip.active, 
+                classification: req.trip.classification,
+                location: parseCoordinates(req.body.location)
+            }
+        }, function(err) {
+            res.redirect(`/trips/${req.params.id}`);
+        })
 };
 
 function edit(req, res) {
