@@ -51,7 +51,14 @@
                                     <h5 class="mb-1"><%= animal.commonName %></h5>
                                 </div>
                                 <small><%= animal.scientificName %></small>
-                                <a href="https://explorer.natureserve.org<%= animal.nsxUrl %>" style="display: block">More info</a>
+                                <div class="row px-3 d-flex align-items-center">
+                                    <a href="https://explorer.natureserve.org<%= animal.nsxUrl %>" target=”_blank” style="display: block">More info</a>
+                                    <% if (trip.loggerId.equals(user._id)) { %>
+                                        <form action="/animals/<%= animal._id %>?_method=DELETE" method="POST">
+                                            <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</button>
+                                        </form>
+                                    <% } %>
+                                </div>
                             </li>
                         <% }) %>
                     <% } else { %>

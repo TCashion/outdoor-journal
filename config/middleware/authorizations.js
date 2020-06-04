@@ -4,7 +4,8 @@ module.exports = {
   isLoggedIn, 
   isTripCreator,
   isCommentCreator, 
-  isLogCreator
+  isLogCreator, 
+  isAnimalCreator
 }
 
 function isLoggedIn(req, res, next) {
@@ -60,3 +61,17 @@ function isCommentCreator(req, res, next) {
   });
 }
   
+// same use case, but for animals
+function isAnimalCreator(req, res, next) {
+  // verifies that the logged-in user also owns the trip
+  Trip.findOne({'animals._id': req.params.id}, function(err, trip) {
+    if (trip.loggerId.equals(req.user._id)) {
+      console.log('Authorized user.')
+      req.trip = trip; 
+      next(); 
+    } else {
+      console.log('ALERT: insufficient access for this operation')
+      redirect(`/trips/${req.params.id}`)
+    }
+  });
+};
