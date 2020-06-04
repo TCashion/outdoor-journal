@@ -19,9 +19,7 @@ const commentSchema = new mongoose.Schema({
         },
         required: true
     },
-    likes: [Schema.Types.ObjectId], // length of array is the number of likes
-        // check for user's id in array to determine whether they like or unlike
-        // Array.some() with .equals method will return boolean 
+    likes: [Schema.Types.ObjectId], 
 }, {
     timestamps: true
 });
@@ -38,7 +36,6 @@ const logSchema = new mongoose.Schema({
         },
         required: true
     },
-    // comments: [commentSchema], // moved this back to trip schema 
     likes: [Schema.Types.ObjectId]
 }, {
     timestamps: true
@@ -50,12 +47,10 @@ const tripSchema = new mongoose.Schema({
     },
     title: {
         type: String,
-        // required: true, 
         default: 'Hiking'
     },
     description: {
         type: String,
-        // required: true, 
         default: 'My hiking trip...'
     },
     logs: [logSchema],
