@@ -8,10 +8,10 @@ module.exports = {
 };
 
 function create(req, res) {
-        req.trip.logs.push(req.body);
-        req.trip.save(function(err) {
-            res.redirect(`/trips/${req.params.id}`);
-        });
+    req.trip.logs.push(req.body);
+    req.trip.save(function(err) {
+        res.redirect(`/trips/${req.params.id}`);
+    });
 };
 
 function updateLikes(req, res) {
@@ -32,9 +32,9 @@ function updateLikes(req, res) {
 };
 
 function deleteOne(req, res) {
-        const logSubDoc = req.trip.logs.id(req.params.id);
-        logSubDoc.remove();
-        req.trip.save(function(err) {
-            res.redirect(`/trips/${req.trip._id}`);
-        })
+    const logSubDoc = req.trip.logs.id(req.params.id);
+    logSubDoc.remove();
+    req.trip.save(function(err) {
+        res.redirect(`/trips/${req.trip._id}`);
+    })
 };

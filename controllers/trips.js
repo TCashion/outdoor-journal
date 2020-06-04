@@ -35,6 +35,7 @@ function newTrip(req, res) {
 };
 
 function create(req, res) {
+    console.log(req.body)
     const trip = new Trip(req.body);
     if (!trip.startDate) trip.startDate = new Date();
     trip.loggerId = req.user._id
@@ -52,7 +53,7 @@ function show(req, res) {
             title: `${trip.title}`,
             timeOptionsOne,
             timeOptionsTwo, 
-            mapsApi: process.env.GOOGLE_MAPS
+            mapsApi: process.env.GOOGLE_MAPS, 
         });
     });  
 };

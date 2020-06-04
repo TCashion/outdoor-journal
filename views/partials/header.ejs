@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- link stylesheet -->
   <link rel='stylesheet' href='/stylesheets/style.css' />
-  <% if (title === 'New Trip' || title === 'Edit Trip') { %>
+  <% if (title === 'Edit Trip') { %>
     <!-- link javascript -->
     <script defer src="/javascripts/app.js"></script>
   <% }    %>
@@ -51,13 +51,6 @@
             active
           <% } %>
           " href="/trips">Your Trips</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link 
-          <% if (title === 'Profile') { %>
-            active
-          <% } %>
-          " href="#">Profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link 

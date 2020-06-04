@@ -41,6 +41,14 @@ const logSchema = new mongoose.Schema({
     timestamps: true
 });
 
+const animalSchema = new mongoose.Schema({
+    commonName: String,
+    scientificName: String, 
+    nsxUrl: String
+}, {
+    timestamps: true
+})
+
 const tripSchema = new mongoose.Schema({
     loggerId: {
         type: Schema.Types.ObjectId,
@@ -67,7 +75,7 @@ const tripSchema = new mongoose.Schema({
     },
     comments: [commentSchema],
     pictures: [String],
-    animals: [String],
+    animals: [animalSchema],
     location: {
         lat: {
             type: Number, 

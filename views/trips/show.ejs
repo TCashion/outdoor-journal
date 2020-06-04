@@ -41,13 +41,30 @@
             <hr>
             <div class="card w-100 my-3">
                 <div class="card-header">
-                Animals
+                Animals spotted: 
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <% if (trip.animals.length) { %>
+                        <% trip.animals.forEach(function(animal) { %>
+                            <li class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1"><%= animal.commonName %></h5>
+                                </div>
+                                <small><%= animal.scientificName %></small>
+                                <a href="https://explorer.natureserve.org<%= animal.nsxUrl %>" style="display: block">More info</a>
+                            </li>
+                        <% }) %>
+                    <% } else { %>
+                        <li class="list-group-item">No animals listed yet.</li>
+                    <% } %>
                 </ul>
+                <div class="form-group p-3">
+                    <form class="user-form" action="/trips/<%= trip._id %>/animals" method="GET">
+                        <input type="text" class="form-control" name="animal" placeholder="Search for animal" required>
+                        <button class="btn btn-primary mt-3">Find animal</button>
+                    </form>
+                </div>
+                <p class="m-3 "style="font-size: .6rem">Animal data obtained from <a href="https://explorer.natureserve.org/"> NatureServe</a></p>
             </div>
             <hr>
             <div class="card w-100 my-3">
