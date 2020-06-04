@@ -9,6 +9,7 @@ module.exports = {
 };
 
 function search(req, res) {
+    if (!req.query.animal) res.redirect(`/trips/${req.trip._id}`);
     const animalQuery = req.query.animal;
     const options = {
         url: `${rootURL}api/data/search`, 
@@ -27,16 +28,16 @@ function search(req, res) {
         }), 
         method: 'POST', 
         headers: {
-            // 'Accept': 'applications/json',
-            // 'Content-Length': '286',
             'Content-Type': 'application/json'
         }
     };  
-    // console.log(request(options))
     request(options, function(err, response, body) {
         const animalData = JSON.parse(body);
-        console.log(animalData);
-        res.redirect(`/trips/${req.params.id}`);
+        res.render(`trips/animals/index`, {
+            title: 'Search results', 
+            animalData, 
+            trip: req.trip
+        });
     });
 };
 
