@@ -1,10 +1,6 @@
 # Outdoor Journal 
 
-The Outdoor Journal is a place where you can plan, record, and save details and memories of your favorite outdoor adventures. 
-
-## Getting Started: 
-
-    PROMPT Contains a description of what the app does and optional background info.
+The Outdoor Journal is a place where you can plan, record, and save details and memories of your favorite outdoor adventures. This project was born out of my own personal experience as an avid outdoorsman and journal keeper. 
 
 ## Screenshots: 
 
@@ -24,6 +20,7 @@ The Outdoor Journal is a place where you can plan, record, and save details and 
 ## APIs implemented:
 * Google Maps Javascript API
 * Natureserve.org public data API
+    * https://explorer.natureserve.org/ 
 
 ## Getting Started: 
 
@@ -41,4 +38,12 @@ $ git clone https://github.com/TCashion/outdoor-journal.git
 
 ## Next Steps: 
 
-    PROMPT: Planned future enhancements (icebox items).
+In the future I plan to implement the following: 
+
+* Hiking Project API to allow users to identify trails 
+* Ability to request, add, or remove friends
+    * Make certain components only visible to friends, such as trip locations
+* Ability to edit the trip location directly in the map
+* Ability to edit your profile information 
+* Scrollable list of active trips on user landing page
+* Ability to search for trips 
