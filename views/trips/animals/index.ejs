@@ -6,29 +6,31 @@
 <h4 class="mb-3">Select the appropriate animal from the list below:</h4>
 <ul class="list-group">
     <% animalData.results.forEach(function(animal) { %>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><%= animal.primaryCommonName %></h5>
-                <small><%= animal.scientificName %></small>
-            </div>
-            <h6>Taxonomy:</h6>
-            <p class="mb-1">
-                <%= animal.speciesGlobal.kingdom %>
-                >
-                <%= animal.speciesGlobal.phylum %>
-                >
-                <%= animal.speciesGlobal.taxclass %>
-                >
-                <%= animal.speciesGlobal.taxorder %>
-                >
-                <%= animal.speciesGlobal.family %>
-                >
-                <%= animal.speciesGlobal.genus %>
-            </p>
-            <small>
-                https://explorer.natureserve.org<%= animal.nsxUrl %>
-            </small>
-        </a>
+        <form action="/trips/<%= trip._id %>/animals?commonName=<%= animal.primaryCommonName %>&scientificName=<%= animal.scientificName %>&nsxUrl=<%= animal.nsxUrl %>" method="POST">
+            <button type="submit" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><%= animal.primaryCommonName %></h5>
+                    <small><%= animal.scientificName %></small>
+                </div>
+                <h6>Taxonomy:</h6>
+                <p class="mb-1">
+                    <%= animal.speciesGlobal.kingdom %>
+                    >
+                    <%= animal.speciesGlobal.phylum %>
+                    >
+                    <%= animal.speciesGlobal.taxclass %>
+                    >
+                    <%= animal.speciesGlobal.taxorder %>
+                    >
+                    <%= animal.speciesGlobal.family %>
+                    >
+                    <%= animal.speciesGlobal.genus %>
+                </p>
+                <small>
+                    https://explorer.natureserve.org<%= animal.nsxUrl %>
+                </small>
+            </button>
+        </form>
     <% }) %>
 </ul>
 

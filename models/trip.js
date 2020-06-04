@@ -46,7 +46,8 @@ const logSchema = new mongoose.Schema({
 
 const animalSchema = new mongoose.Schema({
     commonName: String,
-    scientificName: String
+    scientificName: String, 
+    nsxUrl: String
 }, {
     timestamps: true
 })
@@ -57,12 +58,10 @@ const tripSchema = new mongoose.Schema({
     },
     title: {
         type: String,
-        // required: true, 
         default: 'Hiking'
     },
     description: {
         type: String,
-        // required: true, 
         default: 'My hiking trip...'
     },
     logs: [logSchema],
@@ -79,7 +78,7 @@ const tripSchema = new mongoose.Schema({
     },
     comments: [commentSchema],
     pictures: [String],
-    animals: [String],
+    animals: [animalSchema],
     location: {
         lat: {
             type: Number, 

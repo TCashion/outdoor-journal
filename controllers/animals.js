@@ -6,6 +6,7 @@ const rootURL = 'https://explorer.natureserve.org/';
 
 module.exports = {
     search, 
+    create
 };
 
 function search(req, res) {
@@ -41,3 +42,14 @@ function search(req, res) {
     });
 };
 
+
+function create(req, res) {
+    console.log(req.query) 
+    // let animal; 
+    // animal.commonName = req.query.commonName;
+    // animal.scientificName = req.query.scientificName;
+    // animal.nsxUrl = req.query.nsxUrl;
+    req.trip.animals.push(req.query);
+    req.trip.save(); 
+    res.redirect(`/trips/${req.params.id}`);
+};
