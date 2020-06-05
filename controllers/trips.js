@@ -2,7 +2,7 @@ const User = require('../models/user');
 const Trip = require('../models/trip');
 const timeOptionsOne = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const timeOptionsTwo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: 'true'};
-const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other'].sort(); 
+const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other', 'Boating', 'Skiing', 'Snowboarding'].sort(); 
 
 module.exports = {
     index,

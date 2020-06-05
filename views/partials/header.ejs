@@ -14,8 +14,11 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <% if (title === 'Edit Trip') { %>
     <!-- link javascript -->
-    <script defer src="/javascripts/app.js"></script>
-  <% }    %>
+    <script defer src="/javascripts/edit.js"></script>
+  <% } else if (title === 'New Trip') { %>
+    <!-- link javascript -->
+    <script defer src="/javascripts/new.js"></script>
+  <% }  %>
 </head>
 
 <body>

@@ -70,3 +70,4 @@ In the future I plan to implement the following:
 * Scrollable list of active trips on user landing page
 * Ability to search for trips 
 * Ability to report errors 
+* Ability to upload photos & videos 
