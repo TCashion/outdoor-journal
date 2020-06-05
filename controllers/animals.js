@@ -1,7 +1,6 @@
 const User = require('../models/user');
 const Trip = require('../models/trip');
 const request = require('request');
-// rootURL for animals API
 const rootURL = 'https://explorer.natureserve.org/';
 
 module.exports = {
