@@ -6,10 +6,12 @@ The Outdoor Journal is a place where you can plan, record, and save details and 
 
 This app features: 
 
-* Mobile-first responsive desing
+* Mobile-first responsive design
+
     ![Responsive design](https://i.imgur.com/sE6Xi8G.png)
 * Easy-to-navigate index page listing your trips 
     * note that trips are listed by "active" trips first, then by ascending date 
+
     ![Trips index](https://i.imgur.com/M5yMr6x.png)
 * Detailed pages showing data on individual trips, with these features:
     * The ability for the trip owner to add logs to the trip, or a list of wildlife spotted on the trip. 
@@ -17,10 +19,13 @@ This app features:
         * each wildlife listing contains a link to that species' NatureServe profile page, where the user can learn more about the species  
     * The ability to "like" logs and comments 
     * Basic CRUD capabilities
+
     ![Trip show page](https://i.imgur.com/ui9tzFd.png)
 * The ability to comment on yours and others' trips
+
     ![comments](https://i.imgur.com/WnJcZdx.png)
 * "Edit" page with full update & delete capabilities
+
     ![Trip edit page](https://i.imgur.com/or9xqkl.png)
 
 ## Technologies Used: 
