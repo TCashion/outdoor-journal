@@ -2,7 +2,8 @@ const User = require('../models/user');
 const Trip = require('../models/trip');
 const timeOptionsOne = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 const timeOptionsTwo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: 'true'};
-const classifications = ['Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other', 'Boating', 'Skiing', 'Snowboarding'].sort(); 
+const classifications = ['Rafting', 'Hiking', 'Biking', 'Fishing', 'Hunting', 'Climbing', 'Trekking', 'Ice-Climbing', 'Running', 'Backpacking', 'Camping', 'Trail Running', 'Mountain Biking','Other', 'Boating', 'Skiing', 'Snowboarding'].sort(); 
+const helpers = require('../config/middleware/helpers');
 
 module.exports = {
     index,
@@ -17,8 +18,8 @@ module.exports = {
 
 function index(req, res) {
     Trip.find({loggerId : req.user._id}, function(err, trips) {
-        trips.sort(sortByDate);
-        trips.sort(sortByActive);
+        trips.sort(helpers.sortByDateAscending);
+        trips.sort(helpers.sortByActive);
         res.render('trips/index', {
             title: 'Your Trips', 
             trips,
@@ -38,7 +39,7 @@ function create(req, res) {
     const trip = new Trip(req.body);
     if (!trip.startDate) trip.startDate = new Date();
     trip.loggerId = req.user._id
-    trip.location = parseCoordinates(req.body.location);
+    trip.location = helpers.parseCoordinates(req.body.location);
     trip.save(function(err) {
         if (err) res.send('invalid data');
         res.redirect(`/trips/${trip.id}`);
@@ -76,7 +77,7 @@ function update(req, res) {
                 endDate: req.trip.endDate,
                 active: req.trip.active, 
                 classification: req.trip.classification,
-                location: parseCoordinates(req.body.location)
+                location: helpers.parseCoordinates(req.body.location)
             }
         }, function(err) {
             res.redirect(`/trips/${req.params.id}`);
@@ -101,23 +102,3 @@ function edit(req, res) {
         timeOptionsTwo
     }); 
 }
-
-// helper functions 
-function parseCoordinates(location) {
-    const coordinates = location.split(',').map(coord => parseFloat(coord));
-    return {
-        lat: coordinates[0],
-        long: coordinates[1]
-    };
-};
-
-function sortByDate(tripOne, tripTwo) {
-    return tripOne.startDate - tripTwo.startDate;
-};
-
-function sortByActive(tripOne, tripTwo) {
-    if (tripOne.active && !tripTwo.active) return -1;
-    if (!tripOne.active && tripTwo.active) return 1;
-    if (!tripOne.active && !tripTwo.active 
-        || tripOne.active && tripTwo.active) return 0;
-};

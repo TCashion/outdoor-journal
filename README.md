@@ -71,3 +71,4 @@ In the future I plan to implement the following:
 * Ability to search for trips 
 * Ability to report errors 
 * Ability to upload photos & videos 
+* Cross-browser functionality 

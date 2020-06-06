@@ -52,6 +52,7 @@ const animalSchema = new mongoose.Schema({
 const tripSchema = new mongoose.Schema({
     loggerId: {
         type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     title: {
         type: String,

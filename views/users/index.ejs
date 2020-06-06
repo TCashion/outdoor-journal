@@ -1,18 +1,67 @@
 <%- include ../partials/header.ejs %>
 
-<% if (user) { %>
-    <div class="container justify-content-center mt-5">
-        <div class="text-center my-5">
-            <img src="<%= user.avatar %>" class="rounded-circle profile-pic h-50 w-50" alt="Google Profile Picture">
-        </div>
-        <h1 class="text-center">Welcome <%= user.name %></h1>
-    </div>
-<% } else { %>
+<% if (!user) { %>
     <div class="container justify-content-center mt-5">
         <div class="text-center my-5">
             <h1 class="page-header">Outdoor Journal:</h1>
             <h2><i>Tell your story</i></h2>
             <p class="mt-5">Welcome to Outdoor Journal. Please sign in to continue.</p>
+        </div>
+    </div>
+<% } else { %>
+    <div class="container justify-content-center mt-5">
+        <div class="row">
+            <div class="container justify-content-center">
+                <div class="text-center my-5">
+                    <img src="<%= user.avatar %>" class="rounded-circle profile-pic h-25 w-25" alt="Google Profile Picture">
+                </div>
+                <h2 class="text-center">Welcome <%= user.name %></h2>
+            </div>
+        </div>
+        <hr class="my-3">
+        <div class="row">
+            <div class="container col-12">
+                <h3 class="px-3">
+                    Activity:
+                </h3> 
+                <% trips.forEach(function(trip) { %>
+                    <div class="card my-3 w-100">
+                        <div class="col-12 px-sm-0">
+                            <div class="card-header d-flex">
+                                <div class="col-6 pl-0">
+                                    <strong>
+                                        <%= trip.title %>
+                                    </strong>
+                                    -
+                                    <%= trip.classification %>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <% if (trip.active) { %>
+                                        <span style="color:green">
+                                            <i>Active</i>
+                                        </span> 
+                                    <% } else { %>
+                                        <span style="color:red">
+                                            <i>Finished</i>
+                                        </span> 
+                                    <% } %>
+                                </div>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <p>Created by: <%= trip.loggerId.name %></p>
+                                    <img src="<%= trip.loggerId.avatar %>" class="rounded-circle thumbnail-pic my-3" alt="Google Profile Picture">
+                                    <p>
+                                        <%= trip.description %>
+                                    </p>
+                                    <a href="/trips/<%= trip._id %>" class="btn btn-primary">See trip</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                <% }); %>
+
+            </div>
         </div>
     </div>
 <% } %>

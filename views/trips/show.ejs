@@ -65,12 +65,14 @@
                         <li class="list-group-item">No animals listed yet.</li>
                     <% } %>
                 </ul>
-                <div class="form-group p-3">
-                    <form class="user-form" action="/trips/<%= trip._id %>/animals" method="GET">
-                        <input type="text" class="form-control" name="animal" placeholder="Search for animal" required>
-                        <button class="btn btn-primary mt-3">Find animal</button>
-                    </form>
-                </div>
+                <% if (trip.loggerId.equals(user._id)) { %>
+                    <div class="form-group p-3">
+                        <form class="user-form" action="/trips/<%= trip._id %>/animals" method="GET">
+                            <input type="text" class="form-control" name="animal" placeholder="Search for animal" required>
+                            <button class="btn btn-primary mt-3">Find animal</button>
+                        </form>
+                    </div>
+                <% } %>
                 <p class="m-3 "style="font-size: .6rem">Animal data obtained from <a href="https://explorer.natureserve.org/"> NatureServe</a></p>
             </div>
             <hr>
