@@ -26,16 +26,14 @@
                 </h3> 
                 <% trips.forEach(function(trip) { %>
                     <div class="card my-3 w-100">
-                        <div class="col-12 px-sm-0">
-                            <div class="card-header d-flex">
-                                <div class="col-6 pl-0">
-                                    <strong>
-                                        <%= trip.title %>
-                                    </strong>
+                        <div class="col-12 px-0">
+                            <div class="card-header d-flex flex-column flex-sm-row">
+                                <div class="col-12 col-sm-6 pl-0">
+                                    <%= trip.title %>
                                     -
                                     <%= trip.classification %>
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-12 col-sm-6 text-sm-right p-0">
                                     <% if (trip.active) { %>
                                         <span style="color:green">
                                             <i>Active</i>
@@ -49,8 +47,11 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <p>Created by: <%= trip.loggerId.name %></p>
-                                    <img src="<%= trip.loggerId.avatar %>" class="rounded-circle thumbnail-pic my-3" alt="Google Profile Picture">
+                                    <div class="row">
+                                        <p class="my-auto mx-3">Created by: <span class="d-block d-sm-inline"><%= trip.loggerId.name %></span></p>
+                                        <img src="<%= trip.loggerId.avatar %>" class="rounded-circle thumbnail-pic activity-thumbnail  m-3" alt="Google Profile Picture">
+                                    </div>
+                                    <hr>
                                     <p>
                                         <%= trip.description %>
                                     </p>

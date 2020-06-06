@@ -122,6 +122,10 @@ a {
   .page-header {
     font-size: 2.2rem;
   }
+
+  .activity-thumbnail {
+    display: none; 
+  }
 }
 
 @media (min-width: 768px) {
