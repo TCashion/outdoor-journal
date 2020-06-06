@@ -44,7 +44,6 @@ function search(req, res) {
 
 
 function create(req, res) {
-    console.log(req.query) 
     req.trip.animals.push(req.query);
     req.trip.save(); 
     res.redirect(`/trips/${req.params.id}`);

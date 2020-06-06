@@ -35,7 +35,6 @@ function newTrip(req, res) {
 };
 
 function create(req, res) {
-    console.log(req.body)
     const trip = new Trip(req.body);
     if (!trip.startDate) trip.startDate = new Date();
     trip.loggerId = req.user._id
