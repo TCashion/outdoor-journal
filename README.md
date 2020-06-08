@@ -36,6 +36,7 @@ This app features:
 * NodeJS
 * Google OAuth
 * ExpressJS
+* EJS
 * MongoDB / Mongoose
 
 ## APIs implemented:
