@@ -34,6 +34,8 @@ This app features:
 * Bootstrap 
 * Javascript
 * Google OAuth
+* ExpressJS
+* MongoDB / Mongoose
 
 ## APIs implemented:
 * Google Maps Javascript API
