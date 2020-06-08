@@ -33,6 +33,7 @@ This app features:
 * HTML 
 * Bootstrap 
 * Javascript
+* NodeJS
 * Google OAuth
 * ExpressJS
 * MongoDB / Mongoose
