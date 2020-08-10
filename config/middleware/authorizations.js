@@ -6,7 +6,6 @@ module.exports = {
   isCommentCreator, 
   isLogCreator, 
   isAnimalCreator,
-  isTripCollaborator,
   hasTripAccess
 }
 
@@ -18,10 +17,7 @@ function isLoggedIn(req, res, next) {
   }
 };
 
-// for use in creating logs or deleting trip content
-// ensures the user is the trip owner
 function isTripCreator(req, res, next) {
-  // verifies that the logged-in user also owns the trip
   Trip.findById(req.params.id, function(err, trip) {
     if (trip.loggerId.equals(req.user._id)) {
       console.log('Authorized user.')
@@ -29,13 +25,12 @@ function isTripCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 };
 
 function isLogCreator(req, res, next) {
-  // verifies that the logged-in user also owns the trip
   Trip.findOne({'logs._id': req.params.id}, function(err, trip) {
     if (trip.loggerId.equals(req.user._id)) {
       console.log('Authorized user.')
@@ -43,12 +38,11 @@ function isLogCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 };
 
-// same use case, but for comments
 function isCommentCreator(req, res, next) {
   Trip.findOne({'comments._id': req.params.id}, function(err, trip) {
     const commentSubDoc = trip.comments.id(req.params.id);
@@ -58,14 +52,12 @@ function isCommentCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 }
   
-// same use case, but for animals
 function isAnimalCreator(req, res, next) {
-  // verifies that the logged-in user also owns the trip
   Trip.findOne({'animals._id': req.params.id}, function(err, trip) {
     if (trip.loggerId.equals(req.user._id)) {
       console.log('Authorized user.')
@@ -73,23 +65,10 @@ function isAnimalCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 };
-
-function isTripCollaborator(req, res, next) {
-  // Trip.findById(req.params.id, function(err, trip) {
-    if (trip.collaborators.includes(req.user._id)) {
-      console.log('Authorized user.')
-      req.trip = trip; 
-      next(); 
-    } else {
-      console.log('ALERT: insufficient access for this operation')
-      redirect('/trips/')
-    }
-  // });
-}
 
 async function hasTripAccess(req, res, next) {
   Trip.findById(req.params.id, function(err, trip) {
@@ -99,7 +78,7 @@ async function hasTripAccess(req, res, next) {
       next();
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect('/trips/')
+      res.redirect('/trips/')
     }
   });
 }
