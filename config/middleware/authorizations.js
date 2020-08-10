@@ -5,7 +5,9 @@ module.exports = {
   isTripCreator,
   isCommentCreator, 
   isLogCreator, 
-  isAnimalCreator
+  isAnimalCreator,
+  isTripCollaborator,
+  hasTripAccess
 }
 
 function isLoggedIn(req, res, next) {
@@ -75,3 +77,29 @@ function isAnimalCreator(req, res, next) {
     }
   });
 };
+
+function isTripCollaborator(req, res, next) {
+  // Trip.findById(req.params.id, function(err, trip) {
+    if (trip.collaborators.includes(req.user._id)) {
+      console.log('Authorized user.')
+      req.trip = trip; 
+      next(); 
+    } else {
+      console.log('ALERT: insufficient access for this operation')
+      redirect('/trips/')
+    }
+  // });
+}
+
+async function hasTripAccess(req, res, next) {
+  Trip.findById(req.params.id, function(err, trip) {
+    if (trip.collaborators.includes(req.user._id) 
+    || trip.loggerId.equals(req.user._id)) {
+      req.trip = trip;
+      next();
+    } else {
+      console.log('ALERT: insufficient access for this operation')
+      redirect('/trips/')
+    }
+  });
+}
