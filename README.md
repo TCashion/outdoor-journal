@@ -69,6 +69,7 @@ In the future I plan to implement the following:
 * Hiking Project API to allow users to identify trails 
 * Ability to request, add, or remove friends
     * Make certain components only visible to friends, such as trip locations
+* Ability to make trips public or private
 * Ability to edit the trip location directly in the map
 * Ability to edit your profile information 
 * Scrollable list of active trips on user landing page

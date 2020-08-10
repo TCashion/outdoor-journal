@@ -13,7 +13,8 @@ module.exports = {
     delete: deleteOne, 
     update, 
     edit, 
-    updateDate
+    updateDate,
+    indexForAPI
 };
 
 function index(req, res) {
@@ -101,4 +102,8 @@ function edit(req, res) {
         timeOptionsOne,
         timeOptionsTwo
     }); 
+}
+
+function indexForAPI(req, res) {
+    console.log('indexForAPI')
 }

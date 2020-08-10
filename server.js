@@ -15,6 +15,7 @@ const tripsRouter = require('./routes/trips');
 const logsRouter = require('./routes/logs');
 const commentsRouter = require('./routes/comments');
 const animalsRouter = require('./routes/animals');
+const tripsAPIRouter = require('./routes/api/trips');
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use('/api/trips', tripsAPIRouter);
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', animalsRouter);
