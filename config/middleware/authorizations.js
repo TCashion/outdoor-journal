@@ -2,10 +2,10 @@ const Trip = require('../../models/trip');
 
 module.exports = {
   isLoggedIn, 
-  isTripCreator,
   isCommentCreator, 
   isLogCreator, 
-  isAnimalCreator
+  isAnimalCreator,
+  hasTripAccess
 }
 
 function isLoggedIn(req, res, next) {
@@ -16,26 +16,9 @@ function isLoggedIn(req, res, next) {
   }
 };
 
-// for use in creating logs or deleting trip content
-// ensures the user is the trip owner
-function isTripCreator(req, res, next) {
-  // verifies that the logged-in user also owns the trip
-  Trip.findById(req.params.id, function(err, trip) {
-    if (trip.loggerId.equals(req.user._id)) {
-      console.log('Authorized user.')
-      req.trip = trip; 
-      next(); 
-    } else {
-      console.log('ALERT: insufficient access for this operation')
-      res.redirect(`/trips/${req.params.id}`)
-    }
-  });
-};
-
 function isLogCreator(req, res, next) {
-  // verifies that the logged-in user also owns the trip
   Trip.findOne({'logs._id': req.params.id}, function(err, trip) {
-    if (trip.loggerId.equals(req.user._id)) {
+    if (trip.user.equals(req.user._id)) {
       console.log('Authorized user.')
       req.trip = trip; 
       next(); 
@@ -46,7 +29,6 @@ function isLogCreator(req, res, next) {
   });
 };
 
-// same use case, but for comments
 function isCommentCreator(req, res, next) {
   Trip.findOne({'comments._id': req.params.id}, function(err, trip) {
     const commentSubDoc = trip.comments.id(req.params.id);
@@ -61,11 +43,9 @@ function isCommentCreator(req, res, next) {
   });
 }
   
-// same use case, but for animals
 function isAnimalCreator(req, res, next) {
-  // verifies that the logged-in user also owns the trip
   Trip.findOne({'animals._id': req.params.id}, function(err, trip) {
-    if (trip.loggerId.equals(req.user._id)) {
+    if (trip.user.equals(req.user._id)) {
       console.log('Authorized user.')
       req.trip = trip; 
       next(); 
@@ -75,3 +55,17 @@ function isAnimalCreator(req, res, next) {
     }
   });
 };
+
+function hasTripAccess(req, res, next) {
+  Trip.findById(req.params.id, function(err, trip) {
+    if (trip.user.equals(req.user._id)
+    || trip.collaborators.includes(req.user._id)) {
+      console.log('Authorized user.')
+      req.trip = trip; 
+      next(); 
+    } else {
+      console.log('ALERT: insufficient access for this operation')
+      res.redirect('/trips/')
+    }
+  });
+}

@@ -16,7 +16,7 @@
                                 <%= trip.endDate.toLocaleString([], timeOptionsOne); %>
                             <% } else { %>
                                 Present
-                                <% if (trip.loggerId.equals(user._id)) { %> 
+                                <% if (trip.user.equals(user._id)) { %> 
                                     <br>
                                     <a id="add-end-date" href="">Set end date</a>
                                     <div class="form-group hidden" id="add-end-date-form">
@@ -29,7 +29,7 @@
                                 <% } %>
                             <% }; %>
                     </p>
-                    <% if (trip.loggerId.equals(user._id)) { %>
+                    <% if (trip.user.equals(user._id)) { %>
                         <div class="col-12 px-0 d-flex">
                             <form action="/trips/<%= trip._id%>/edit" method="GET">
                                 <button class="btn btn-primary btn-likes m-1 m-sm-3">Edit trip</button>
@@ -53,7 +53,7 @@
                                 <small><%= animal.scientificName %></small>
                                 <div class="row px-3 d-flex align-items-center">
                                     <a href="https://explorer.natureserve.org<%= animal.nsxUrl %>" target=”_blank” style="display: block">More info</a>
-                                    <% if (trip.loggerId.equals(user._id)) { %>
+                                    <% if (trip.user.equals(user._id)) { %>
                                         <form action="/animals/<%= animal._id %>?_method=DELETE" method="POST">
                                             <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</button>
                                         </form>
@@ -65,7 +65,7 @@
                         <li class="list-group-item">No animals listed yet.</li>
                     <% } %>
                 </ul>
-                <% if (trip.loggerId.equals(user._id)) { %>
+                <% if (trip.user.equals(user._id)) { %>
                     <div class="form-group p-3">
                         <form class="user-form" action="/trips/<%= trip._id %>/animals" method="GET">
                             <input type="text" class="form-control" name="animal" placeholder="Search for animal" required>
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="col-sm-6">   
-            <% if (trip.loggerId.equals(user._id)) { %>
+            <% if (trip.user.equals(user._id)) { %>
                 <hr>
                 <form class="user-form" method="POST" action="/trips/<%= trip._id %>/logs">
                     <div class="form-group">
@@ -112,7 +112,7 @@
                             <form action="/trips/<%= trip._id %>/logs/<%= log._id %>/likes?_method=PUT" method="POST">
                                 <button class="btn btn-primary btn-likes m-1 m-sm-3">Likes: <%= log.likes.length %></button>
                             </form>
-                            <% if (trip.loggerId.equals(user._id)) { %>
+                            <% if (trip.user.equals(user._id)) { %>
                                 <form action="/logs/<%= log._id %>?_method=DELETE" method="POST">
                                     <button type="submit" class="btn btn-danger m-1 m-sm-3">DELETE</button>
                                 </form>

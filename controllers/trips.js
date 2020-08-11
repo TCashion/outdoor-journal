@@ -18,7 +18,7 @@ module.exports = {
 };
 
 function index(req, res) {
-    Trip.find({loggerId : req.user._id}, function(err, trips) {
+    Trip.find({user : req.user._id}, function(err, trips) {
         trips.sort(helpers.sortByDateAscending);
         trips.sort(helpers.sortByActive);
         res.render('trips/index', {
@@ -39,7 +39,7 @@ function newTrip(req, res) {
 function create(req, res) {
     const trip = new Trip(req.body);
     if (!trip.startDate) trip.startDate = new Date();
-    trip.loggerId = req.user._id
+    trip.user = req.user._id
     trip.location = helpers.parseCoordinates(req.body.location);
     trip.save(function(err) {
         if (err) res.send('invalid data');
