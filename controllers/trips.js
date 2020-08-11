@@ -30,18 +30,18 @@ function index(req, res) {
 };
 
 async function newTrip(req, res) {
-    console.log(req.user)
     let allUsers = await User.find({});
     allUsers = allUsers.map((user) => {
         return {
             name: user.name,
-            id: user._id
+            _id: user._id
         }
     })
     res.render('trips/new', {
         title: 'New Trip', 
         classifications,
-        allUsers
+        allUsers, 
+        mainUser: req.user
     });
 };
 

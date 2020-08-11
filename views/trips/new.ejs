@@ -27,7 +27,9 @@
           <label for="classification">Collaborators:</label>
           <select class="custom-select" multiple name="collaborators">
             <% allUsers.forEach(function (user) { %>
-              <option id=<%= user._id%>><%= user.name %></option>
+              <% if (mainUser._id.toString() !== user._id.toString()) { %>
+                <option id=<%= user._id%>><%= user.name %></option>
+              <% } %>
             <% }) %>
             <option selected>Open this select menu</option>
             <option value="1">One</option>
