@@ -29,10 +29,19 @@ function index(req, res) {
     });
 };
 
-function newTrip(req, res) {
+async function newTrip(req, res) {
+    console.log(req.user)
+    let allUsers = await User.find({});
+    allUsers = allUsers.map((user) => {
+        return {
+            name: user.name,
+            id: user._id
+        }
+    })
     res.render('trips/new', {
         title: 'New Trip', 
-        classifications
+        classifications,
+        allUsers
     });
 };
 

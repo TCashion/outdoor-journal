@@ -24,6 +24,26 @@ const commentSchema = new mongoose.Schema({
     timestamps: true
 });
 
+const featureSchema = new mongoose.Schema({
+    type: {
+        type: String, 
+        default: 'Feature'
+    },
+    geometry: {
+        type: {
+            type: String, 
+            default: 'Point',
+        },
+        coordinates: [[{
+            type: Number,
+            default: 0
+        }]]
+    }, 
+    properties: Object
+}, {
+    timestamps: true
+})
+
 const logSchema = new mongoose.Schema({
     body: {
         type: String,
@@ -77,13 +97,12 @@ const tripSchema = new mongoose.Schema({
     comments: [commentSchema],
     pictures: [String],
     animals: [animalSchema],
-    location: {
-        lat: {
-            type: Number, 
+    featureCollection: {
+        type: {
+            type: String, 
+            default: 'FeatureCollection'
         },
-        long: {
-            type: Number
-        }
+        features: [featureSchema]
     },
     collaborators: [{
         type: Schema.Types.ObjectId, 
