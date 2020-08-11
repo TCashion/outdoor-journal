@@ -60,7 +60,18 @@ function create(req, res) {
         }
     };
     trip.featureCollection.features.push(feature);
-    trip.collaborators = req.collaborators;
+    if (req.body.collaborators) {
+        const ObjectId = require('mongoose').Types.ObjectId;
+        let collaborators = [];
+        if (typeof req.body.collaborators.length === 'array') {
+            collaborators = req.body.collaborators.forEach(function(collaborator) {
+                collaborators.push(new ObjectId(collaborator));
+            });
+        } else {
+            collaborators.push(new ObjectId(req.body.collaborators));
+        }
+        trip.collaborators = collaborators;
+    }
     trip.save(function(err) {
         if (err) res.send('invalid data');
         res.redirect(`/trips/${trip.id}`);
@@ -68,7 +79,9 @@ function create(req, res) {
 };
 
 function show(req, res) {
-    Trip.findById(req.params.id, function(err, trip) {
+    Trip.findById(req.params.id)
+    .populate('collaborators')
+    .exec(function(err, trip) {
         res.render('trips/show', {
             trip, 
             title: `${trip.title}`,

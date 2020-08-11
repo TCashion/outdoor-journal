@@ -28,7 +28,7 @@
           <select class="custom-select" multiple name="collaborators">
             <% allUsers.forEach(function (user) { %>
               <% if (mainUser._id.toString() !== user._id.toString()) { %>
-                <option id=<%= user._id%>><%= user.name %></option>
+                <option value=<%= user._id %>><%= user.name %></option>
               <% } %>
             <% }) %>
           </select>

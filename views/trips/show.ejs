@@ -38,9 +38,13 @@
                     <% } %>
                     <p class="card-text">Collaborators: </p>
                     <ul>
-                        <% trip.collaborators.forEach(function(collaborator) { %>
-                            <li><% collaborator.name %></li>
-                        <% }) %>
+                        <% if (trip.collaborators.length > 0) { %> 
+                            <% trip.collaborators.forEach(function(collaborator) { %>
+                                <li><%= collaborator.name %></li>
+                            <% }) %>
+                        <% } else { %>
+                            <li>None</li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
