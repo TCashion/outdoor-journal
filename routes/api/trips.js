@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const tripsCtrl = require('../../controllers/trips');
+const tripsAPICtrl = require('../../controllers/api/trips');
 const authorizations = require('../../config/middleware/authorizations');
 
 /*---------- Public Routes ----------*/
-router.get('/', tripsCtrl.indexForAPI);
+router.get('/', tripsAPICtrl.index);
 
 
 /*---------- Protected Routes ----------*/

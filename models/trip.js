@@ -94,6 +94,13 @@ const tripSchema = new mongoose.Schema({
         required: true, 
         default: true
     },
+    collaborators: [
+        {
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
+        }
+    ]
 }, {
     timestamps: true
 });
