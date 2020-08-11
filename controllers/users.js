@@ -8,7 +8,7 @@ module.exports = {
 
 function index(req, res) {
     Trip.find({})
-        .populate('loggerId')
+        .populate('user')
         .exec(function(err, trips) {
             trips.sort(helpers.sortByDateDescending);
             res.render('users/index', {

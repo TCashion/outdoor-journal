@@ -1,28 +1,48 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema; 
+const Schema = mongoose.Schema;
 
 const commentSchema = new mongoose.Schema({
     body: {
         type: String,
         required: true
     },
-    commentorName: String, 
+    commentorName: String,
     user: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     date: {
-        type: Date, 
-        default: function() {
+        type: Date,
+        default: function () {
             return new Date();
         },
         required: true
     },
-    likes: [Schema.Types.ObjectId], 
+    likes: [Schema.Types.ObjectId],
 }, {
     timestamps: true
 });
+
+const featureSchema = new mongoose.Schema({
+    type: {
+        type: String,
+        default: 'Feature'
+    },
+    geometry: {
+        type: {
+            type: String,
+            default: 'Point',
+        },
+        coordinates: [[{
+            type: Number,
+            default: 0
+        }]]
+    },
+    properties: Object
+}, {
+    timestamps: true
+})
 
 const logSchema = new mongoose.Schema({
     body: {
@@ -30,8 +50,8 @@ const logSchema = new mongoose.Schema({
         required: true
     },
     date: {
-        type: Date, 
-        default: function() {
+        type: Date,
+        default: function () {
             return new Date();
         },
         required: true
@@ -43,7 +63,7 @@ const logSchema = new mongoose.Schema({
 
 const animalSchema = new mongoose.Schema({
     commonName: String,
-    scientificName: String, 
+    scientificName: String,
     nsxUrl: String
 }, {
     timestamps: true
@@ -65,7 +85,7 @@ const tripSchema = new mongoose.Schema({
     logs: [logSchema],
     startDate: {
         type: Date,
-        default: function() {
+        default: function () {
             return new Date();
         },
     },
@@ -77,23 +97,28 @@ const tripSchema = new mongoose.Schema({
     comments: [commentSchema],
     pictures: [String],
     animals: [animalSchema],
-    location: {
-        lat: {
-            type: Number, 
+    featureCollection: {
+        type: {
+            type: String,
+            default: 'FeatureCollection'
         },
-        long: {
-            type: Number
-        }
+        features: [featureSchema]
     },
     collaborators: [{
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: 'User'
     }],
     active: {
         type: Boolean,
-        required: true, 
+        required: true,
         default: true
     },
+    collaborators: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        }
+    ]
 }, {
     timestamps: true
 });

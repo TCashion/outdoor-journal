@@ -18,7 +18,7 @@ module.exports = {
 };
 
 function index(req, res) {
-    Trip.find({loggerId : req.user._id}, function(err, trips) {
+    Trip.find({user : req.user._id}, function(err, trips) {
         trips.sort(helpers.sortByDateAscending);
         trips.sort(helpers.sortByActive);
         res.render('trips/index', {
@@ -29,18 +29,49 @@ function index(req, res) {
     });
 };
 
-function newTrip(req, res) {
+async function newTrip(req, res) {
+    let allUsers = await User.find({});
+    allUsers = allUsers.map((user) => {
+        return {
+            name: user.name,
+            _id: user._id
+        }
+    })
     res.render('trips/new', {
         title: 'New Trip', 
-        classifications
+        classifications,
+        allUsers, 
+        mainUser: req.user
     });
 };
 
 function create(req, res) {
     const trip = new Trip(req.body);
     if (!trip.startDate) trip.startDate = new Date();
-    trip.loggerId = req.user._id
-    trip.location = helpers.parseCoordinates(req.body.location);
+    trip.user = req.user._id
+    const coordinatesObj = helpers.parseCoordinates(req.body.feature);
+    const feature = {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [
+                [coordinatesObj.lat, coordinatesObj.lng]
+            ]
+        }
+    };
+    trip.featureCollection.features.push(feature);
+    if (req.body.collaborators) {
+        const ObjectId = require('mongoose').Types.ObjectId;
+        let collaborators = [];
+        if (typeof req.body.collaborators.length === 'array') {
+            collaborators = req.body.collaborators.forEach(function(collaborator) {
+                collaborators.push(new ObjectId(collaborator));
+            });
+        } else {
+            collaborators.push(new ObjectId(req.body.collaborators));
+        }
+        trip.collaborators = collaborators;
+    }
     trip.save(function(err) {
         if (err) res.send('invalid data');
         res.redirect(`/trips/${trip.id}`);
@@ -48,7 +79,9 @@ function create(req, res) {
 };
 
 function show(req, res) {
-    Trip.findById(req.params.id, function(err, trip) {
+    Trip.findById(req.params.id)
+    .populate('collaborators')
+    .exec(function(err, trip) {
         res.render('trips/show', {
             trip, 
             title: `${trip.title}`,
