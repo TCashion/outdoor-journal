@@ -73,11 +73,11 @@
             </div>
         </div>
         <div class="form-group" id="location-input">
-            <div class="hidden" id="lat-coords"><%= trip.location.lat %></div>
-            <div class="hidden" id="long-coords"><%= trip.location.long %></div>
+            <div class="hidden" id="lat-coords"><%= trip.featureCollection.features[0].geometry.coordinates[0][0] %></div>
+            <div class="hidden" id="long-coords"><%= trip.featureCollection.features[0].geometry.coordinates[0][1] %></div>
             <label for="trip-location">Enter location coordinates (lattitude and longitude coordinates):</label>
             <input type="text" class="form-control" id="trip-location" 
-            name="location" value="<%= trip.location.lat %>, <%= trip.location.long %>">
+            name="location" value="<%= trip.featureCollection.features[0].geometry.coordinates[0][0] %>, <%= trip.featureCollection.features[0].geometry.coordinates[0][1] %>">
         </div>
         <button type="submit" class="btn btn-primary">Update Trip</button>
     </form>

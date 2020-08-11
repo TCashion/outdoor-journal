@@ -9,7 +9,7 @@ function parseCoordinates(location) {
     const coordinates = location.split(',').map(coord => parseFloat(coord));
     return {
         lat: coordinates[0],
-        long: coordinates[1]
+        lng: coordinates[1]
     };
 };
 

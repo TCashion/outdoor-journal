@@ -36,6 +36,12 @@
                             </form>
                         </div>
                     <% } %>
+                    <p class="card-text">Collaborators: </p>
+                    <ul>
+                        <% trip.collaborators.forEach(function(collaborator) { %>
+                            <li><% collaborator.name %></li>
+                        <% }) %>
+                    </ul>
                 </div>
             </div>
             <hr>
@@ -78,8 +84,8 @@
             <hr>
             <div class="card w-100 my-3">
                 <div id="map"></div>
-                <div class="hidden" id="lat-coords"><%= trip.location.lat %></div>
-                <div class="hidden" id="long-coords"><%= trip.location.long %></div>
+                <div class="hidden" id="lat-coords"><%= trip.featureCollection.features[0].geometry.coordinates[0][0] %></div>
+                <div class="hidden" id="long-coords"><%= trip.featureCollection.features[0].geometry.coordinates[0][1] %></div>
                 <div class="hidden" id="location-name"><%= trip.title %></div>
             </div>
         </div>

@@ -49,7 +49,18 @@ function create(req, res) {
     const trip = new Trip(req.body);
     if (!trip.startDate) trip.startDate = new Date();
     trip.user = req.user._id
-    trip.location = helpers.parseCoordinates(req.body.location);
+    const coordinatesObj = helpers.parseCoordinates(req.body.feature);
+    const feature = {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [
+                [coordinatesObj.lat, coordinatesObj.lng]
+            ]
+        }
+    };
+    trip.featureCollection.features.push(feature);
+    trip.collaborators = req.collaborators;
     trip.save(function(err) {
         if (err) res.send('invalid data');
         res.redirect(`/trips/${trip.id}`);
