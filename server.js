@@ -44,7 +44,10 @@ app.use(function (req, res, next) {
   next();
 });
 
+// API routes
 app.use('/api/trips', tripsAPIRouter);
+
+// Web express app routes
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', animalsRouter);

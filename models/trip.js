@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema({
         required: true
     },
     commentorName: String, 
-    commentorId: {
+    user: {
         type: Schema.Types.ObjectId, 
         ref: 'User',
         required: true
@@ -50,7 +50,7 @@ const animalSchema = new mongoose.Schema({
 })
 
 const tripSchema = new mongoose.Schema({
-    loggerId: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
@@ -85,6 +85,10 @@ const tripSchema = new mongoose.Schema({
             type: Number
         }
     },
+    collaborators: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
+    }],
     active: {
         type: Boolean,
         required: true, 

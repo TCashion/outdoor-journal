@@ -27,7 +27,7 @@ function isTripCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 };
@@ -41,7 +41,7 @@ function isLogCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 };
@@ -56,7 +56,7 @@ function isCommentCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 }
@@ -71,7 +71,7 @@ function isAnimalCreator(req, res, next) {
       next(); 
     } else {
       console.log('ALERT: insufficient access for this operation')
-      redirect(`/trips/${req.params.id}`)
+      res.redirect(`/trips/${req.params.id}`)
     }
   });
 };
